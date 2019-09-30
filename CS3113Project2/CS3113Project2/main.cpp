@@ -256,8 +256,8 @@ void Update() {
   lastTicks = ticks;
   int collision = detectCollision();
   if (ballMoving && collision == -1) {
-    ball_x += (deltaTime * 30.0 * (ballDir.x)/ballDir.length());
-    ball_y += (deltaTime * 30.0 * (ballDir.y)/ballDir.length());
+    ball_x += (deltaTime * 40.0 * (ballDir.x)/ballDir.length());
+    ball_y += (deltaTime * 40.0 * (ballDir.y)/ballDir.length());
   }
   else if (collision == 1) {
     ballMoving = false;

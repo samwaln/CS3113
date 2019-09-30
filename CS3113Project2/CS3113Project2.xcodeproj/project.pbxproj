@@ -15,8 +15,6 @@
 		A959B01D23346E7E00D6B514 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A959B01A23346E7E00D6B514 /* SDL2_image.framework */; };
 		A959B01E23346E7E00D6B514 /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A959B01B23346E7E00D6B514 /* SDL2_mixer.framework */; };
 		A959B01F23346E9900D6B514 /* shaders in Copy Files */ = {isa = PBXBuildFile; fileRef = A959B00D23346DB800D6B514 /* shaders */; };
-		A959B02A23391E7300D6B514 /* littleman.png in Copy Files */ = {isa = PBXBuildFile; fileRef = A959B0262338069C00D6B514 /* littleman.png */; };
-		A959B02B23391E7300D6B514 /* pixilsun.png in Copy Files */ = {isa = PBXBuildFile; fileRef = A959B0272338069C00D6B514 /* pixilsun.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,8 +24,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
-				A959B02A23391E7300D6B514 /* littleman.png in Copy Files */,
-				A959B02B23391E7300D6B514 /* pixilsun.png in Copy Files */,
 				A959B01F23346E9900D6B514 /* shaders in Copy Files */,
 			);
 			name = "Copy Files";
@@ -49,8 +45,6 @@
 		A959B01923346E7E00D6B514 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		A959B01A23346E7E00D6B514 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		A959B01B23346E7E00D6B514 /* SDL2_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_mixer.framework; path = ../../../../../Library/Frameworks/SDL2_mixer.framework; sourceTree = "<group>"; };
-		A959B0262338069C00D6B514 /* littleman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = littleman.png; sourceTree = "<group>"; };
-		A959B0272338069C00D6B514 /* pixilsun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pixilsun.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,8 +83,6 @@
 		A959B00523346D8B00D6B514 /* CS3113Project2 */ = {
 			isa = PBXGroup;
 			children = (
-				A959B0262338069C00D6B514 /* littleman.png */,
-				A959B0272338069C00D6B514 /* pixilsun.png */,
 				A959B00F23346DB800D6B514 /* glm */,
 				A959B01123346DB800D6B514 /* SDL_image.h */,
 				A959B01223346DB900D6B514 /* ShaderProgram.cpp */,
