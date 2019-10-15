@@ -44,12 +44,14 @@ void Entity::CheckCollisionsY(Entity* objects, int objectCount)
       float penetrationY = fabs(ydist - (height/2) - (object.height/2));
       if (velocity.y > 0)
       {
+        collidedType = object.entityType;
         position.y -= penetrationY;
         velocity.y = 0;
         velocity.x = 0;
       }
       else if (velocity.x < 0)
       {
+        collidedType = object.entityType;
         position.y += penetrationY;
         velocity.y = 0;
         velocity.x = 0;
@@ -66,16 +68,19 @@ void Entity::CheckCollisionsX(Entity *objects, int objectCount)
     if (CheckCollision(object))
     {
       isActive = false;
+      
       float xdist = fabs(position.x - object.position.x);
       float penetrationX = fabs(xdist - (width/2) - (object.width/2));
       if (velocity.x > 0)
       {
+        collidedType = object.entityType;
         position.x -= penetrationX;
         velocity.y = 0;
         velocity.x = 0;
       }
       else if (velocity.x < 0)
       {
+        collidedType = object.entityType;
         position.x += penetrationX;
         velocity.y = 0;
         velocity.x = 0;

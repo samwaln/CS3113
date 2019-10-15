@@ -18,6 +18,8 @@
 		A962AF0B234B8AE400246C11 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A962AF0A234B8AE400246C11 /* main.cpp */; };
 		A9AF69CB235409A400209669 /* moontile2.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9AF69CA2354099200209669 /* moontile2.png */; };
 		A9AF69DE235567B400209669 /* lunarmodule.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9AF69DD235567B000209669 /* lunarmodule.png */; };
+		A9AF69E12356801400209669 /* moontile1.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9AF69E02356800600209669 /* moontile1.png */; };
+		A9AF69E22356816400209669 /* font1.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9AF69DF2355681000209669 /* font1.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,6 +29,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
+				A9AF69E22356816400209669 /* font1.png in CopyFiles */,
+				A9AF69E12356801400209669 /* moontile1.png in CopyFiles */,
 				A9AF69DE235567B400209669 /* lunarmodule.png in CopyFiles */,
 				A9AF69CB235409A400209669 /* moontile2.png in CopyFiles */,
 				A95193BA23220B9200EAA5BA /* shaders in CopyFiles */,
@@ -53,6 +57,7 @@
 		A9AF69CA2354099200209669 /* moontile2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = moontile2.png; sourceTree = "<group>"; };
 		A9AF69DD235567B000209669 /* lunarmodule.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lunarmodule.png; sourceTree = "<group>"; };
 		A9AF69DF2355681000209669 /* font1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = font1.png; sourceTree = "<group>"; };
+		A9AF69E02356800600209669 /* moontile1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = moontile1.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +101,7 @@
 				A962AF05234256AD00246C11 /* Entity.cpp */,
 				A962AF06234256AD00246C11 /* Entity.h */,
 				A962AF0A234B8AE400246C11 /* main.cpp */,
+				A9AF69E02356800600209669 /* moontile1.png */,
 				A9AF69CA2354099200209669 /* moontile2.png */,
 				A95193AD23220A2E00EAA5BA /* glm */,
 				A95193AC23220A2E00EAA5BA /* ShaderProgram.cpp */,

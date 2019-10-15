@@ -32,6 +32,10 @@ struct GameState {
 
 GameState state;
 
+GLuint fontTextureID;
+int cols = 16;
+int rows = 16;
+
 GLuint LoadTexture(const char* filePath) {
   int w, h, n;
   unsigned char* image = stbi_load(filePath, &w, &h, &n, STBI_rgb_alpha);
@@ -73,63 +77,66 @@ void Initialize() {
   state.player.acceleration = glm::vec3(0.0,-0.2,0.0);
   state.player.textureID = LoadTexture("lunarmodule.png");
   
-  GLuint tileTextureID = LoadTexture("moontile2.png");
+  fontTextureID = LoadTexture("font1.png");
   
-  state.platforms[0].textureID = tileTextureID;
+  GLuint tileTextureID1 = LoadTexture("moontile1.png");
+  GLuint tileTextureID2 = LoadTexture("moontile2.png");
+  
+  state.platforms[0].textureID = tileTextureID1;
   state.platforms[0].position = glm::vec3(2.5,-3.25,0);
   state.platforms[0].entityType = LANDING;
   
-  state.platforms[1].textureID = tileTextureID;
+  state.platforms[1].textureID = tileTextureID1;
   state.platforms[1].position = glm::vec3(1.5,-3.25,0);
   state.platforms[1].entityType = LANDING;
   
-  state.platforms[2].textureID = tileTextureID;
+  state.platforms[2].textureID = tileTextureID1;
   state.platforms[2].position = glm::vec3(0.5,-3.25,0);
   state.platforms[2].entityType = LANDING;
   
-  state.platforms[3].textureID = tileTextureID;
+  state.platforms[3].textureID = tileTextureID2;
   state.platforms[3].position = glm::vec3(-4.5,1.25,0);
   
-  state.platforms[4].textureID = tileTextureID;
+  state.platforms[4].textureID = tileTextureID2;
   state.platforms[4].position = glm::vec3(-3.5,1.25,0);
   
-  state.platforms[5].textureID = tileTextureID;
+  state.platforms[5].textureID = tileTextureID2;
   state.platforms[5].position = glm::vec3(-4.5,1.25,0);
   
-  state.platforms[6].textureID = tileTextureID;
+  state.platforms[6].textureID = tileTextureID2;
   state.platforms[6].position = glm::vec3(4.5,2.25,0);
   
-  state.platforms[7].textureID = tileTextureID;
+  state.platforms[7].textureID = tileTextureID2;
   state.platforms[7].position = glm::vec3(4.5,3.25,0);
   
-  state.platforms[8].textureID = tileTextureID;
+  state.platforms[8].textureID = tileTextureID2;
   state.platforms[8].position = glm::vec3(4.5,1.25,0);
   
-  state.platforms[9].textureID = tileTextureID;
+  state.platforms[9].textureID = tileTextureID2;
   state.platforms[9].position = glm::vec3(3.5,1.25,0);
   
-  state.platforms[10].textureID = tileTextureID;
+  state.platforms[10].textureID = tileTextureID2;
   state.platforms[10].position = glm::vec3(2.5,1.25,0);
   
-  state.platforms[11].textureID = tileTextureID;
+  state.platforms[11].textureID = tileTextureID2;
   state.platforms[11].position = glm::vec3(1.5,1.25,0);
   
-  state.platforms[12].textureID = tileTextureID;
+  state.platforms[12].textureID = tileTextureID2;
   state.platforms[12].position = glm::vec3(1.5,0.25,0);
   
-  state.platforms[13].textureID = tileTextureID;
+  state.platforms[13].textureID = tileTextureID2;
   state.platforms[13].position = glm::vec3(0.5,0.25,0);
   
-  state.platforms[14].textureID = tileTextureID;
+  state.platforms[14].textureID = tileTextureID2;
   state.platforms[14].position = glm::vec3(-4.5,0.25,0);
   
-  state.platforms[15].textureID = tileTextureID;
+  state.platforms[15].textureID = tileTextureID2;
   state.platforms[15].position = glm::vec3(-3.5,0.25,0);
   
-  state.platforms[16].textureID = tileTextureID;
+  state.platforms[16].textureID = tileTextureID2;
   state.platforms[16].position = glm::vec3(-3.5,0.25,0);
   
-  state.platforms[17].textureID = tileTextureID;
+  state.platforms[17].textureID = tileTextureID2;
   state.platforms[17].position = glm::vec3(-2.5,0.25,0);
   
   viewMatrix = glm::mat4(1.0f);
@@ -174,12 +181,80 @@ void ProcessInput() {
   
 }
 
+void drawLetter(int index, float position) {
+  float u = (float)(index % cols) / (float)cols;
+  float v = (float)(index / cols) / (float)rows;
+  
+  float width = 1.0f / (float)cols;
+  float height = 1.0f / (float)rows;
+  
+  float texCoords[] = { u, v + height, u + width, v + height, u + width, v,
+    u, v + height, u + width, v, u, v};
+  
+  float vertices[]  = { -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5 };
+  
+  glm::mat4 modelMatrix = glm::mat4(1.0f);
+  modelMatrix = glm::translate(modelMatrix, glm::vec3(-3.0 + position / 2,0.0,0.0));
+  program.SetModelMatrix(modelMatrix);
+  
+  glBindTexture(GL_TEXTURE_2D, fontTextureID);
+  
+  glVertexAttribPointer(program.positionAttribute, 2, GL_FLOAT, false, 0, vertices);
+  glEnableVertexAttribArray(program.positionAttribute);
+  
+  glVertexAttribPointer(program.texCoordAttribute, 2, GL_FLOAT, false, 0, texCoords);
+  glEnableVertexAttribArray(program.texCoordAttribute);
+  
+  glDrawArrays(GL_TRIANGLES, 0, 6);
+  
+  glDisableVertexAttribArray(program.positionAttribute);
+  glDisableVertexAttribArray(program.texCoordAttribute);
+  
+}
+
 void drawWon() {
+  drawLetter(77,-3);
+  drawLetter(73,-2);
+  drawLetter(83,-1);
+  drawLetter(83,0);
+  drawLetter(73,1);
+  drawLetter(79,2);
+  drawLetter(78,3);
+  
+  drawLetter(32,4);
+  drawLetter(32,5);
+  
+  drawLetter(83,6);
+  drawLetter(85,7);
+  drawLetter(67,8);
+  drawLetter(67,9);
+  drawLetter(69,10);
+  drawLetter(83,11);
+  drawLetter(83,12);
+  drawLetter(70,13);
+  drawLetter(85,14);
+  drawLetter(76,15);
   
 }
 
 void drawLost() {
+  drawLetter(77,-1);
+  drawLetter(73,0);
+  drawLetter(83,1);
+  drawLetter(83,2);
+  drawLetter(73,3);
+  drawLetter(79,4);
+  drawLetter(78,5);
   
+  drawLetter(32,6);
+  drawLetter(32,7);
+  
+  drawLetter(70,8);
+  drawLetter(65,9);
+  drawLetter(73,10);
+  drawLetter(76,11);
+  drawLetter(69,12);
+  drawLetter(68,13);
 }
 
 #define FIXED_TIMESTEP 0.0166666f
@@ -206,10 +281,6 @@ void Update() {
   
   accumulator = deltaTime;
   
-  if (state.player.isActive == false) {
-    drawWon();
-    drawLost();
-  }
 }
 
 
@@ -220,6 +291,15 @@ void Render() {
   
   for (int i = 0; i < PLATFORM_COUNT; i++) {
     state.platforms[i].Render(&program);
+  }
+  
+  if (state.player.isActive == false) {
+    if (state.player.collidedType == LANDING) {
+      drawWon();
+    }
+    else {
+      drawLost();
+    }
   }
   
   SDL_GL_SwapWindow(displayWindow);

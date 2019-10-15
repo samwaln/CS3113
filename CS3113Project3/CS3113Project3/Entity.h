@@ -21,10 +21,7 @@ public:
   bool isStatic;
   bool isActive;
   
-  bool collidedTop;
-  bool collidedBottom;
-  bool collidedLeft;
-  bool collidedRight;
+  enum EntityType collidedType;
   
   glm::vec3 position;
   glm::vec3 velocity;
