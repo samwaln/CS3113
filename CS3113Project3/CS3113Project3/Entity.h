@@ -12,13 +12,19 @@
 #include "glm/gtc/matrix_transform.hpp"
 #include "ShaderProgram.h"
 
+enum EntityType{PLAYER, TILE, LANDING};
 
 class Entity {
 public:
   
-  EntityType entityType;
+  enum EntityType entityType;
   bool isStatic;
   bool isActive;
+  
+  bool collidedTop;
+  bool collidedBottom;
+  bool collidedLeft;
+  bool collidedRight;
   
   glm::vec3 position;
   glm::vec3 velocity;

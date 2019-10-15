@@ -23,8 +23,7 @@ bool gameIsRunning = true;
 ShaderProgram program;
 glm::mat4 viewMatrix, modelMatrix, projectionMatrix;
 
-#define PLATFORM_COUNT 5
-enum EntityType {PLAYER, PLATFORM, COIN};
+#define PLATFORM_COUNT 16
 
 struct GameState {
   Entity player;
@@ -56,7 +55,7 @@ GLuint LoadTexture(const char* filePath) {
 
 void Initialize() {
   SDL_Init(SDL_INIT_VIDEO);
-  displayWindow = SDL_CreateWindow("Physics!", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, SDL_WINDOW_OPENGL);
+  displayWindow = SDL_CreateWindow("Lunar Lander", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, SDL_WINDOW_OPENGL);
   SDL_GLContext context = SDL_GL_CreateContext(displayWindow);
   SDL_GL_MakeCurrent(displayWindow, context);
   
@@ -71,25 +70,67 @@ void Initialize() {
   state.player.entityType = PLAYER;
   state.player.isStatic = false;
   state.player.position = glm::vec3(0,3,0);
-  state.player.acceleration = glm::vec3(0.0,-9.81,0.0);
-  state.player.textureID = LoadTexture("me.png");
+  state.player.acceleration = glm::vec3(0.0,-0.2,0.0);
+  state.player.textureID = LoadTexture("lunarmodule.png");
   
-  GLuint tileTextureID = LoadTexture("tile.png");
+  GLuint tileTextureID = LoadTexture("moontile2.png");
   
   state.platforms[0].textureID = tileTextureID;
-  state.platforms[0].position = glm::vec3(-1,-3.25,0);
+  state.platforms[0].position = glm::vec3(2.5,-3.25,0);
+  state.platforms[0].entityType = LANDING;
   
   state.platforms[1].textureID = tileTextureID;
-  state.platforms[1].position = glm::vec3(0,-3.25,0);
+  state.platforms[1].position = glm::vec3(1.5,-3.25,0);
+  state.platforms[1].entityType = LANDING;
   
   state.platforms[2].textureID = tileTextureID;
-  state.platforms[2].position = glm::vec3(1,-3.25,0);
+  state.platforms[2].position = glm::vec3(0.5,-3.25,0);
+  state.platforms[2].entityType = LANDING;
   
   state.platforms[3].textureID = tileTextureID;
-  state.platforms[3].position = glm::vec3(3.25,-3.25,0);
+  state.platforms[3].position = glm::vec3(-4.5,1.25,0);
   
   state.platforms[4].textureID = tileTextureID;
-  state.platforms[4].position = glm::vec3(1,-2.25,0);
+  state.platforms[4].position = glm::vec3(-3.5,1.25,0);
+  
+  state.platforms[5].textureID = tileTextureID;
+  state.platforms[5].position = glm::vec3(-4.5,1.25,0);
+  
+  state.platforms[6].textureID = tileTextureID;
+  state.platforms[6].position = glm::vec3(4.5,2.25,0);
+  
+  state.platforms[7].textureID = tileTextureID;
+  state.platforms[7].position = glm::vec3(4.5,3.25,0);
+  
+  state.platforms[8].textureID = tileTextureID;
+  state.platforms[8].position = glm::vec3(4.5,1.25,0);
+  
+  state.platforms[9].textureID = tileTextureID;
+  state.platforms[9].position = glm::vec3(3.5,1.25,0);
+  
+  state.platforms[10].textureID = tileTextureID;
+  state.platforms[10].position = glm::vec3(2.5,1.25,0);
+  
+  state.platforms[11].textureID = tileTextureID;
+  state.platforms[11].position = glm::vec3(1.5,1.25,0);
+  
+  state.platforms[12].textureID = tileTextureID;
+  state.platforms[12].position = glm::vec3(1.5,0.25,0);
+  
+  state.platforms[13].textureID = tileTextureID;
+  state.platforms[13].position = glm::vec3(0.5,0.25,0);
+  
+  state.platforms[14].textureID = tileTextureID;
+  state.platforms[14].position = glm::vec3(-4.5,0.25,0);
+  
+  state.platforms[15].textureID = tileTextureID;
+  state.platforms[15].position = glm::vec3(-3.5,0.25,0);
+  
+  state.platforms[16].textureID = tileTextureID;
+  state.platforms[16].position = glm::vec3(-3.5,0.25,0);
+  
+  state.platforms[17].textureID = tileTextureID;
+  state.platforms[17].position = glm::vec3(-2.5,0.25,0);
   
   viewMatrix = glm::mat4(1.0f);
   modelMatrix = glm::mat4(1.0f);
@@ -104,7 +145,6 @@ void Initialize() {
   glEnable(GL_BLEND);
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
   
-  
   glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
 }
 
@@ -116,30 +156,29 @@ void ProcessInput() {
       case SDL_WINDOWEVENT_CLOSE:
         gameIsRunning = false;
         break;
-        
-      case SDL_KEYDOWN:
-        switch (event.key.keysym.sym) {
-          case SDLK_SPACE:
-            state.player.velocity.y += 5.0f;
-            break;
-            
-        }
-        break;
     }
   }
   
-  state.player.velocity.x = 0;
+//  state.player.acceleration.x = 0;
   
   const Uint8 *keys = SDL_GetKeyboardState(NULL);
   
-  if (keys[SDL_SCANCODE_A])
+  if (keys[SDL_SCANCODE_LEFT])
   {
-    state.player.velocity.x = -3;
+    state.player.acceleration.x -= 0.02;
   }
-  else if  (keys[SDL_SCANCODE_D])
+  else if  (keys[SDL_SCANCODE_RIGHT])
   {
-    state.player.velocity.x = 3;
+    state.player.acceleration.x += 0.02;
   }
+  
+}
+
+void drawWon() {
+  
+}
+
+void drawLost() {
   
 }
 
@@ -166,6 +205,11 @@ void Update() {
   }
   
   accumulator = deltaTime;
+  
+  if (state.player.isActive == false) {
+    drawWon();
+    drawLost();
+  }
 }
 
 

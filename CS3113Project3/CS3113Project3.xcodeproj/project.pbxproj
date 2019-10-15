@@ -14,14 +14,10 @@
 		A959AFF62332988200D6B514 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A959AFF32332988200D6B514 /* SDL2.framework */; };
 		A959AFF72332988200D6B514 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A959AFF42332988200D6B514 /* SDL2_image.framework */; };
 		A959AFF82332988200D6B514 /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A959AFF52332988200D6B514 /* SDL2_mixer.framework */; };
-		A959AFF92332B0A200D6B514 /* drawing.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = A959AFF22332970500D6B514 /* drawing.png */; };
-		A959B02823391E3900D6B514 /* littleman.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = A959B024233804CF00D6B514 /* littleman.png */; };
-		A959B02923391E3900D6B514 /* pixilsun.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = A959B025233804CF00D6B514 /* pixilsun.png */; };
 		A962AF07234256AD00246C11 /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A962AF05234256AD00246C11 /* Entity.cpp */; };
-		A962AF092342572D00246C11 /* george_0.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = A962AF082342571F00246C11 /* george_0.png */; };
 		A962AF0B234B8AE400246C11 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A962AF0A234B8AE400246C11 /* main.cpp */; };
-		A962AF0E234B8B7A00246C11 /* me.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = A962AF0C234B8B6F00246C11 /* me.png */; };
-		A962AF0F234B8B7A00246C11 /* tile.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = A962AF0D234B8B6F00246C11 /* tile.png */; };
+		A9AF69CB235409A400209669 /* moontile2.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9AF69CA2354099200209669 /* moontile2.png */; };
+		A9AF69DE235567B400209669 /* lunarmodule.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9AF69DD235567B000209669 /* lunarmodule.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,12 +27,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
-				A962AF0E234B8B7A00246C11 /* me.png in CopyFiles */,
-				A962AF0F234B8B7A00246C11 /* tile.png in CopyFiles */,
-				A962AF092342572D00246C11 /* george_0.png in CopyFiles */,
-				A959B02823391E3900D6B514 /* littleman.png in CopyFiles */,
-				A959B02923391E3900D6B514 /* pixilsun.png in CopyFiles */,
-				A959AFF92332B0A200D6B514 /* drawing.png in CopyFiles */,
+				A9AF69DE235567B400209669 /* lunarmodule.png in CopyFiles */,
+				A9AF69CB235409A400209669 /* moontile2.png in CopyFiles */,
 				A95193BA23220B9200EAA5BA /* shaders in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -44,7 +36,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		A951939F232209EC00EAA5BA /* SDLSimple */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SDLSimple; sourceTree = BUILT_PRODUCTS_DIR; };
+		A951939F232209EC00EAA5BA /* CS3113Project3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CS3113Project3; sourceTree = BUILT_PRODUCTS_DIR; };
 		A95193A923220A2E00EAA5BA /* ShaderProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderProgram.h; sourceTree = "<group>"; };
 		A95193AA23220A2E00EAA5BA /* shaders */ = {isa = PBXFileReference; lastKnownFileType = folder; path = shaders; sourceTree = "<group>"; };
 		A95193AB23220A2E00EAA5BA /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
@@ -52,18 +44,15 @@
 		A95193AD23220A2E00EAA5BA /* glm */ = {isa = PBXFileReference; lastKnownFileType = folder; path = glm; sourceTree = "<group>"; };
 		A95193B023220B4400EAA5BA /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		A95193B223220B5100EAA5BA /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		A959AFF22332970500D6B514 /* drawing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drawing.png; sourceTree = "<group>"; };
 		A959AFF32332988200D6B514 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		A959AFF42332988200D6B514 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		A959AFF52332988200D6B514 /* SDL2_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_mixer.framework; path = ../../../../../Library/Frameworks/SDL2_mixer.framework; sourceTree = "<group>"; };
-		A959B024233804CF00D6B514 /* littleman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = littleman.png; sourceTree = "<group>"; };
-		A959B025233804CF00D6B514 /* pixilsun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pixilsun.png; sourceTree = "<group>"; };
 		A962AF05234256AD00246C11 /* Entity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Entity.cpp; sourceTree = "<group>"; };
 		A962AF06234256AD00246C11 /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
-		A962AF082342571F00246C11 /* george_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = george_0.png; sourceTree = "<group>"; };
 		A962AF0A234B8AE400246C11 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		A962AF0C234B8B6F00246C11 /* me.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = me.png; sourceTree = "<group>"; };
-		A962AF0D234B8B6F00246C11 /* tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile.png; sourceTree = "<group>"; };
+		A9AF69CA2354099200209669 /* moontile2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = moontile2.png; sourceTree = "<group>"; };
+		A9AF69DD235567B000209669 /* lunarmodule.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lunarmodule.png; sourceTree = "<group>"; };
+		A9AF69DF2355681000209669 /* font1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = font1.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,7 +74,7 @@
 		A9519396232209EC00EAA5BA = {
 			isa = PBXGroup;
 			children = (
-				A95193A1232209EC00EAA5BA /* SDLSimple */,
+				A95193A1232209EC00EAA5BA /* CS3113Project3 */,
 				A95193A0232209EC00EAA5BA /* Products */,
 				A95193AF23220B4400EAA5BA /* Frameworks */,
 			);
@@ -94,30 +83,27 @@
 		A95193A0232209EC00EAA5BA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A951939F232209EC00EAA5BA /* SDLSimple */,
+				A951939F232209EC00EAA5BA /* CS3113Project3 */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A95193A1232209EC00EAA5BA /* SDLSimple */ = {
+		A95193A1232209EC00EAA5BA /* CS3113Project3 */ = {
 			isa = PBXGroup;
 			children = (
+				A9AF69DF2355681000209669 /* font1.png */,
+				A9AF69DD235567B000209669 /* lunarmodule.png */,
 				A962AF05234256AD00246C11 /* Entity.cpp */,
 				A962AF06234256AD00246C11 /* Entity.h */,
-				A962AF0C234B8B6F00246C11 /* me.png */,
-				A962AF0D234B8B6F00246C11 /* tile.png */,
-				A959B024233804CF00D6B514 /* littleman.png */,
-				A959AFF22332970500D6B514 /* drawing.png */,
 				A962AF0A234B8AE400246C11 /* main.cpp */,
-				A962AF082342571F00246C11 /* george_0.png */,
-				A959B025233804CF00D6B514 /* pixilsun.png */,
+				A9AF69CA2354099200209669 /* moontile2.png */,
 				A95193AD23220A2E00EAA5BA /* glm */,
 				A95193AC23220A2E00EAA5BA /* ShaderProgram.cpp */,
 				A95193A923220A2E00EAA5BA /* ShaderProgram.h */,
 				A95193AA23220A2E00EAA5BA /* shaders */,
 				A95193AB23220A2E00EAA5BA /* stb_image.h */,
 			);
-			path = SDLSimple;
+			path = CS3113Project3;
 			sourceTree = "<group>";
 		};
 		A95193AF23220B4400EAA5BA /* Frameworks */ = {
@@ -135,9 +121,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A951939E232209EC00EAA5BA /* SDLSimple */ = {
+		A951939E232209EC00EAA5BA /* CS3113Project3 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A95193A6232209EC00EAA5BA /* Build configuration list for PBXNativeTarget "SDLSimple" */;
+			buildConfigurationList = A95193A6232209EC00EAA5BA /* Build configuration list for PBXNativeTarget "CS3113Project3" */;
 			buildPhases = (
 				A951939B232209EC00EAA5BA /* Sources */,
 				A951939C232209EC00EAA5BA /* Frameworks */,
@@ -147,9 +133,9 @@
 			);
 			dependencies = (
 			);
-			name = SDLSimple;
+			name = CS3113Project3;
 			productName = SDLSimple;
-			productReference = A951939F232209EC00EAA5BA /* SDLSimple */;
+			productReference = A951939F232209EC00EAA5BA /* CS3113Project3 */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -166,7 +152,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A951939A232209EC00EAA5BA /* Build configuration list for PBXProject "SDLSimple" */;
+			buildConfigurationList = A951939A232209EC00EAA5BA /* Build configuration list for PBXProject "CS3113Project3" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -178,7 +164,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A951939E232209EC00EAA5BA /* SDLSimple */,
+				A951939E232209EC00EAA5BA /* CS3113Project3 */,
 			);
 		};
 /* End PBXProject section */
@@ -343,7 +329,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A951939A232209EC00EAA5BA /* Build configuration list for PBXProject "SDLSimple" */ = {
+		A951939A232209EC00EAA5BA /* Build configuration list for PBXProject "CS3113Project3" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A95193A4232209EC00EAA5BA /* Debug */,
@@ -352,7 +338,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A95193A6232209EC00EAA5BA /* Build configuration list for PBXNativeTarget "SDLSimple" */ = {
+		A95193A6232209EC00EAA5BA /* Build configuration list for PBXNativeTarget "CS3113Project3" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A95193A7232209EC00EAA5BA /* Debug */,

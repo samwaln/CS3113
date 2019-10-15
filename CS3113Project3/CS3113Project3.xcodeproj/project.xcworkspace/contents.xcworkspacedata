@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:SDLSimple.xcodeproj">
+      location = "group:/Users/samanthawaln/Documents/CS3113/CS3113Project3/CS3113Project3/lunar_module.png">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>
