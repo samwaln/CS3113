@@ -24,10 +24,6 @@ bool Entity::CheckCollision(Entity other)
     float ydist = fabs(position.y - other.position.y) - ((height + other.height) / 2.0f);
   
     if (xdist < 0 && ydist < 0) {
-//      if (entityType == PLAYER && other.entityType == COIN) {
-//        other.isActive = false;
-//      }
-//      position.y = 0;
       return true;
     }
     return false;
