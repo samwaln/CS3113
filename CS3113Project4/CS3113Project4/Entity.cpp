@@ -6,7 +6,6 @@ Entity::Entity()
     isStatic = true;
     isActive = true;
     position = glm::vec3(0);
-    speed = 0;
     width = 1;
     height = 1;
     playerWon = -1;
@@ -45,6 +44,7 @@ void Entity::CheckCollisionsY(Entity *objects, int objectCount)
                     playerWon = 0;
                 }
                 else if (velocity.y < 0){
+                    Mix_PlayChannel(-1, jump, 0);
                     object->isActive = false;
                 }
             }
@@ -56,10 +56,10 @@ void Entity::CheckCollisionsY(Entity *objects, int objectCount)
                 collidedTop = true;
             }
             else if (velocity.y < 0) {
-                if (entityType == PLAYER && object->entityType == ENEMY) {
-                    object->isActive = false;
-                    return;
-                }
+//                if (entityType == PLAYER && object->entityType == ENEMY) {
+//                    object->isActive = false;
+//                    return;
+//                }
                 position.y += penetrationY;
                 velocity.y = 0;
                 collidedBottom = true;

@@ -8,6 +8,7 @@
 #include <SDL.h>
 #include <SDL_opengl.h>
 #include <SDL_image.h>
+#include <SDL_mixer.h>
 #include "glm/mat4x4.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 #include "ShaderProgram.h"
@@ -35,6 +36,9 @@ struct GameState {
 
 GameState state;
 
+Mix_Music* music;
+Mix_Chunk* jump;
+
 GLuint fontTextureID;
 int cols = 16;
 int rows = 16;
@@ -61,7 +65,7 @@ GLuint LoadTexture(const char* filePath) {
 }
 
 void Initialize() {
-    SDL_Init(SDL_INIT_VIDEO);
+    SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
     displayWindow = SDL_CreateWindow("Rise of the AI", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, SDL_WINDOW_OPENGL);
     SDL_GLContext context = SDL_GL_CreateContext(displayWindow);
     SDL_GL_MakeCurrent(displayWindow, context);
@@ -74,6 +78,12 @@ void Initialize() {
     
     program.Load("shaders/vertex_textured.glsl", "shaders/fragment_textured.glsl");
     
+    Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 4096);
+    music = Mix_LoadMUS("backgroundmusic.wav");
+    jump = Mix_LoadWAV("jump2.wav");
+    Mix_VolumeChunk(jump, MIX_MAX_VOLUME * 4);
+    Mix_PlayMusic(music, -1);
+    
     fontTextureID = LoadTexture("font1.png");
     
     state.player.entityType = PLAYER;
@@ -83,6 +93,7 @@ void Initialize() {
     state.player.height = 0.8f;
     state.player.acceleration = glm::vec3(0, -9.81f, 0);
     state.player.textureID = LoadTexture("george_0.png");
+    state.player.jump = jump;
   
     GLuint evilTextureID = LoadTexture("villain.png");
     
@@ -156,7 +167,7 @@ void Initialize() {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 
-    glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
+    glClearColor(0.8f, 0.9f, 1.0f, 1.0f);
 }
 
 void ProcessInput() {
@@ -326,16 +337,20 @@ void Render() {
   
     if (state.player.playerWon == 0)
     {
+        Mix_HaltMusic();
         drawLost();
     }
     else if (state.player.playerWon == 1)
     {
+        Mix_HaltMusic();
         drawWon();
     }
     SDL_GL_SwapWindow(displayWindow);
 }
 
 void Shutdown() {
+    Mix_FreeMusic(music);
+    Mix_FreeChunk(jump);
     SDL_Quit();
 }
 
