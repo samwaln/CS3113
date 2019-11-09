@@ -19,15 +19,17 @@
 #include "Util.h"
 #include "Entity.h"
 #include "Map.h"
+#define ENEMY_COUNT 1
 struct GameState {
-    Entity player;
-    Map *map;
-    int nextLevel;
+	Entity player;
+	Map* map;
+	int nextLevel;
+	Entity enemies[ENEMY_COUNT];
 };
 class Scene {
 public:
-    GameState state;
-    virtual void Initialize() = 0;
-    virtual void Update(float deltaTime) = 0;
-    virtual void Render(ShaderProgram *program) = 0;
+	GameState state;
+	virtual void Initialize() = 0;
+	virtual void Update(float deltaTime) = 0;
+	virtual void Render(ShaderProgram* program) = 0;
 };
