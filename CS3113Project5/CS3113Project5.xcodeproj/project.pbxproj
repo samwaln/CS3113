@@ -13,6 +13,7 @@
 		A9E5F23B2369E17400B1AED2 /* Level1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9E5F2392369E17400B1AED2 /* Level1.cpp */; };
 		A9E5F23E2369E4F100B1AED2 /* Level2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9E5F23C2369E4F100B1AED2 /* Level2.cpp */; };
 		A9E5F2412369E79B00B1AED2 /* Level3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9E5F23F2369E79A00B1AED2 /* Level3.cpp */; };
+		A9E5F247237629D100B1AED2 /* Menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9E5F245237629D100B1AED2 /* Menu.cpp */; };
 		DB233D0F23661A49008B1DEB /* tileset.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB233D0E23661A3D008B1DEB /* tileset.png */; };
 		DB233D1223661B3D008B1DEB /* Map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB233D1023661B3D008B1DEB /* Map.cpp */; };
 		DBDF1B532323DE3F007CECB1 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBDF1B522323DE3F007CECB1 /* main.cpp */; };
@@ -55,10 +56,12 @@
 		A9E5F23D2369E4F100B1AED2 /* Level2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Level2.h; sourceTree = "<group>"; };
 		A9E5F23F2369E79A00B1AED2 /* Level3.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Level3.cpp; sourceTree = "<group>"; };
 		A9E5F2402369E79B00B1AED2 /* Level3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Level3.h; sourceTree = "<group>"; };
+		A9E5F245237629D100B1AED2 /* Menu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Menu.cpp; sourceTree = "<group>"; };
+		A9E5F246237629D100B1AED2 /* Menu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Menu.h; sourceTree = "<group>"; };
 		DB233D0E23661A3D008B1DEB /* tileset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tileset.png; sourceTree = "<group>"; };
 		DB233D1023661B3D008B1DEB /* Map.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Map.cpp; sourceTree = "<group>"; };
 		DB233D1123661B3D008B1DEB /* Map.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Map.h; sourceTree = "<group>"; };
-		DBDF1B4F2323DE3F007CECB1 /* SDLProject */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SDLProject; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBDF1B4F2323DE3F007CECB1 /* CS3113Project5 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CS3113Project5; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBDF1B522323DE3F007CECB1 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		DBDF1B592323DE8D007CECB1 /* ShaderProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderProgram.h; sourceTree = "<group>"; };
 		DBDF1B5A2323DE8D007CECB1 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
@@ -94,7 +97,7 @@
 		DBDF1B462323DE3F007CECB1 = {
 			isa = PBXGroup;
 			children = (
-				DBDF1B512323DE3F007CECB1 /* SDLProject */,
+				DBDF1B512323DE3F007CECB1 /* CS3113Project5 */,
 				DBDF1B502323DE3F007CECB1 /* Products */,
 				DBDF1B5F2323DE92007CECB1 /* Frameworks */,
 			);
@@ -103,12 +106,12 @@
 		DBDF1B502323DE3F007CECB1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DBDF1B4F2323DE3F007CECB1 /* SDLProject */,
+				DBDF1B4F2323DE3F007CECB1 /* CS3113Project5 */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		DBDF1B512323DE3F007CECB1 /* SDLProject */ = {
+		DBDF1B512323DE3F007CECB1 /* CS3113Project5 */ = {
 			isa = PBXGroup;
 			children = (
 				DB233D0E23661A3D008B1DEB /* tileset.png */,
@@ -123,6 +126,8 @@
 				DBDF1B522323DE3F007CECB1 /* main.cpp */,
 				A9E5F2362369E11A00B1AED2 /* Scene.cpp */,
 				A9E5F2372369E11A00B1AED2 /* Scene.h */,
+				A9E5F245237629D100B1AED2 /* Menu.cpp */,
+				A9E5F246237629D100B1AED2 /* Menu.h */,
 				A9E5F2392369E17400B1AED2 /* Level1.cpp */,
 				A9E5F23A2369E17400B1AED2 /* Level1.h */,
 				A9E5F23C2369E4F100B1AED2 /* Level2.cpp */,
@@ -135,7 +140,7 @@
 				A9E5F2312369D7D200B1AED2 /* Util.cpp */,
 				A9E5F2322369D7D200B1AED2 /* Util.h */,
 			);
-			path = SDLProject;
+			path = CS3113Project5;
 			sourceTree = "<group>";
 		};
 		DBDF1B5F2323DE92007CECB1 /* Frameworks */ = {
@@ -153,9 +158,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DBDF1B4E2323DE3F007CECB1 /* SDLProject */ = {
+		DBDF1B4E2323DE3F007CECB1 /* CS3113Project5 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DBDF1B562323DE3F007CECB1 /* Build configuration list for PBXNativeTarget "SDLProject" */;
+			buildConfigurationList = DBDF1B562323DE3F007CECB1 /* Build configuration list for PBXNativeTarget "CS3113Project5" */;
 			buildPhases = (
 				DBDF1B4B2323DE3F007CECB1 /* Sources */,
 				DBDF1B4C2323DE3F007CECB1 /* Frameworks */,
@@ -165,9 +170,9 @@
 			);
 			dependencies = (
 			);
-			name = SDLProject;
+			name = CS3113Project5;
 			productName = SDLProject;
-			productReference = DBDF1B4F2323DE3F007CECB1 /* SDLProject */;
+			productReference = DBDF1B4F2323DE3F007CECB1 /* CS3113Project5 */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -184,7 +189,7 @@
 					};
 				};
 			};
-			buildConfigurationList = DBDF1B4A2323DE3F007CECB1 /* Build configuration list for PBXProject "SDLProject" */;
+			buildConfigurationList = DBDF1B4A2323DE3F007CECB1 /* Build configuration list for PBXProject "CS3113Project5" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -196,7 +201,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DBDF1B4E2323DE3F007CECB1 /* SDLProject */,
+				DBDF1B4E2323DE3F007CECB1 /* CS3113Project5 */,
 			);
 		};
 /* End PBXProject section */
@@ -210,6 +215,7 @@
 				DBDF1B532323DE3F007CECB1 /* main.cpp in Sources */,
 				FAD6911E234B8AE400D9AA86 /* Entity.cpp in Sources */,
 				A9E5F2412369E79B00B1AED2 /* Level3.cpp in Sources */,
+				A9E5F247237629D100B1AED2 /* Menu.cpp in Sources */,
 				DB233D1223661B3D008B1DEB /* Map.cpp in Sources */,
 				DBDF1B5E2323DE8D007CECB1 /* ShaderProgram.cpp in Sources */,
 				A9E5F23E2369E4F100B1AED2 /* Level2.cpp in Sources */,
@@ -367,7 +373,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DBDF1B4A2323DE3F007CECB1 /* Build configuration list for PBXProject "SDLProject" */ = {
+		DBDF1B4A2323DE3F007CECB1 /* Build configuration list for PBXProject "CS3113Project5" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DBDF1B542323DE3F007CECB1 /* Debug */,
@@ -376,7 +382,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DBDF1B562323DE3F007CECB1 /* Build configuration list for PBXNativeTarget "SDLProject" */ = {
+		DBDF1B562323DE3F007CECB1 /* Build configuration list for PBXNativeTarget "CS3113Project5" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DBDF1B572323DE3F007CECB1 /* Debug */,

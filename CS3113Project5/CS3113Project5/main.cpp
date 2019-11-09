@@ -15,6 +15,7 @@
 #include "Map.h"
 #include "Util.h"
 #include "Scene.h"
+#include "menu.h"
 #include "Level1.h"
 #include "Level2.h"
 #include "Level3.h"
@@ -28,7 +29,8 @@ glm::mat4 viewMatrix, modelMatrix, projectionMatrix;
 GLuint fontTextureID;
 
 Scene *currentScene;
-Scene *sceneList[3];
+Scene *sceneList[4];
+Menu *menu;
 Level1 *level1;
 Level2 *level2;
 Level3 *level3;
@@ -54,9 +56,10 @@ void Initialize() {
     
     fontTextureID = Util::LoadTexture("font.png");
     
-    sceneList[0] = new Level1();
-    sceneList[1] = new Level2();
-    sceneList[2] = new Level3();
+    sceneList[0] = new Menu();
+    sceneList[1] = new Level1();
+    sceneList[2] = new Level2();
+    sceneList[3] = new Level3();
     SwitchToScene(sceneList[0]);
     
     viewMatrix = glm::mat4(1.0f);
@@ -89,7 +92,8 @@ void ProcessInput() {
                     case SDLK_SPACE:
                         currentScene->state.player.Jump();
                         break;
-                        
+                    case SDLK_RETURN:
+                        currentScene->state.nextLevel = 1;
                 }
                 break;
         }

@@ -35,7 +35,7 @@ void Level1::Initialize() {
 void Level1::Update(float deltaTime) {
     state.player.Update(deltaTime, NULL, 0, state.map);
     if (state.player.position.x > 15) {
-        state.nextLevel = 1;
+        state.nextLevel = 2;
         state.player.position.y = 20;
     }
 }
