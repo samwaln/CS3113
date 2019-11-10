@@ -9,6 +9,7 @@ Entity::Entity()
 	speed = 0;
 	width = 1;
 	height = 1;
+    lives = 1;
 }
 
 
@@ -210,10 +211,17 @@ void Entity::Update(float deltaTime, Entity* objects, int objectCount, Map* map)
 	if (entityType == PLAYER) {
 		//if you fall off, make it game over
 		if (position.y < -8) {
-			isStatic = true;
+            if (lives > 0) {
+                lives-=1;
+                position.x -= 1;
+                position.y = 0;
+            }
 		}
 		if (lastCollision == ENEMY && (collidedLeft == true || collidedRight == true)) {
-			isStatic = true;
+            if (lives > 0)  {
+                lives-=1;
+                position.x -= 0.5;
+            }
 			velocity = glm::vec3(0, 0, 0);
 			acceleration = glm::vec3(0, 0, 0);
 		}

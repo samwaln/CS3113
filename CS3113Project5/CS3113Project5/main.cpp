@@ -15,7 +15,7 @@
 #include "Map.h"
 #include "Util.h"
 #include "Scene.h"
-#include "menu.h"
+#include "Menu.h"
 #include "Level1.h"
 #include "Level2.h"
 #include "Level3.h"
@@ -75,7 +75,7 @@ void Initialize() {
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
+    glClearColor(0.7f, 0.8f, 0.9f, 1.0f);
 }
 
 void ProcessInput() {

@@ -26,6 +26,7 @@ void Level1::Initialize() {
 	state.map = new Map(LEVEL1_WIDTH, LEVEL1_HEIGHT, level1_data, mapTextureID, 1.0f, 4, 1);
 	state.player.entityType = PLAYER;
 	state.player.isStatic = false;
+    state.player.lives = 3;
 	state.player.width = 0.9f;
 	state.player.position = glm::vec3(2, 0, 0);
 	state.player.acceleration = glm::vec3(0, -9.81f, 0);
@@ -63,8 +64,8 @@ void Level1::Render(ShaderProgram* program) {
 	{
 		state.enemies[i].Render(program);
 	}
-	if (state.player.isStatic == true) {
-		GLuint fontTextureID = Util::LoadTexture("font.png");
+    GLuint fontTextureID = Util::LoadTexture("font.png");
+	if (state.player.lives == 0) {
 		glm::vec3 loc1 = state.player.position;
 		glm::vec3 loc2 = state.player.position;
 		//needs more work, the game over screen just follows the player
@@ -74,5 +75,12 @@ void Level1::Render(ShaderProgram* program) {
 		loc2.y += 1;
 		Util::DrawText(program, fontTextureID, "Game", 1, -0.2, loc1);
 		Util::DrawText(program, fontTextureID, "Over!", 1, -0.2, loc2);
-	}
+    }
+    glm::vec3 loc = glm::vec3(0,0,0);
+    if (state.player.position.x > 5) {
+        loc = glm::vec3(state.player.position.x-4.75, -0.2, 0);
+    } else {
+        loc = glm::vec3(0.25, -0.2, 0);
+    }
+    Util::DrawText(program, fontTextureID, std::to_string(state.player.lives), 1, -0.2, loc);
 }

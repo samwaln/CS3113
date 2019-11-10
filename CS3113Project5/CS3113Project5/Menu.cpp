@@ -15,22 +15,17 @@ unsigned int menu_data[] =
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 87, 69, 76, 67, 79, 77, 69, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 80, 82, 69, 83, 83, 0, 69, 78, 84, 69, 82, 0, 0,
-    0, 84, 79, 0, 67, 79, 78, 84, 73, 78, 85, 69, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 };
 
 void Menu::Initialize() {
     GLuint mapTextureID = Util::LoadTexture("font.png");
     state.map = new Map(MENU_WIDTH, MENU_HEIGHT, menu_data, mapTextureID, 0.83f, 16, 16);
-    state.player.entityType = PLAYER;
-    state.player.isStatic = false;
-    state.player.width = 1.0f;
     state.player.position = glm::vec3(5, 5, 0);
-    state.player.acceleration = glm::vec3(0, 0, 0);
-//    state.player.textureID = Util::LoadTexture("me.png");
     state.nextLevel = -1;
 }
 void Menu::Update(float deltaTime) {
@@ -39,4 +34,9 @@ void Menu::Update(float deltaTime) {
 void Menu::Render(ShaderProgram *program) {
     state.map->Render(program);
     state.player.Render(program);
+    GLuint fontTextureID = Util::LoadTexture("font.png");
+    glm::vec3 loc1 = glm::vec3(3.5,-3,0);
+    glm::vec3 loc2 = glm::vec3(1.2,-3.75,0);
+    Util::DrawText(program, fontTextureID, "WELCOME", 1, -0.45, loc1);
+    Util::DrawText(program, fontTextureID, "Press Enter To Start", 0.5, -0.1, loc2);
 }

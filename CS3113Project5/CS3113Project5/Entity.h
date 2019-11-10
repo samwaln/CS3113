@@ -24,6 +24,7 @@ public:
 	EntityType entityType;
 	bool isStatic;
 	bool isActive;
+    int lives;
 
 	glm::vec3 position;
 	glm::vec3 velocity;
