@@ -342,20 +342,26 @@ void Entity::Update(float deltaTime, Entity* objects, int objectCount, Map* map)
 
 	animTime += deltaTime;
 	if (velocity.x > 0) {
-		if (animTime >= 0.2) {
+        if (animIndex >= animFrames / 2) {
+            animIndex = 0;
+        }
+		if (animTime >= 0.15) {
 			animTime = 0.0f;
 			animIndex++;
-			if (animIndex >= animFrames / 2 + 1) {
+			if (animIndex >= animFrames / 2) {
 				animIndex = 0;
 			}
 		}
 	}
 	else if (velocity.x < 0) {
-		if (animTime >= 0.2) {
+        if (animIndex < animFrames / 2) {
+            animIndex = animFrames / 2;
+        }
+		if (animTime >= 0.15) {
 			animTime = 0.0f;
 			animIndex++;
 			if (animIndex >= animFrames) {
-				animIndex = animFrames / 2 + 1;
+				animIndex = animFrames / 2;
 			}
 		}
 	}

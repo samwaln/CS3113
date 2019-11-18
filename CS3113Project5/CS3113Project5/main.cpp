@@ -7,6 +7,7 @@
 #include <vector>
 #include <SDL.h>
 #include <SDL_opengl.h>
+#include <SDL_mixer.h>
 #include "glm/mat4x4.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 #include "ShaderProgram.h"
@@ -27,6 +28,9 @@ ShaderProgram program;
 glm::mat4 viewMatrix, modelMatrix, projectionMatrix;
 
 GLuint fontTextureID;
+
+Mix_Music* music;
+Mix_Chunk* jump;
 
 Scene *currentScene;
 Scene *sceneList[4];
@@ -55,6 +59,12 @@ void Initialize() {
     glViewport(0, 0, 640, 480);
     
     program.Load("shaders/vertex_textured.glsl", "shaders/fragment_textured.glsl");
+    
+    Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 4096);
+    music = Mix_LoadMUS("backgroundmusic.wav");
+    jump = Mix_LoadWAV("jump2.wav");
+    Mix_VolumeChunk(jump, MIX_MAX_VOLUME * 4);
+    Mix_PlayMusic(music, -1);
     
     fontTextureID = Util::LoadTexture("font.png");
     
@@ -94,6 +104,7 @@ void ProcessInput() {
                 switch (event.key.keysym.sym) {
                     case SDLK_SPACE:
                         currentScene->state.player.Jump();
+                        Mix_PlayChannel(-1, jump, 0);
                         break;
                     case SDLK_RETURN:
 						if (currentScene->state.player.lives == 4) {
@@ -112,15 +123,15 @@ void ProcessInput() {
     if (keys[SDL_SCANCODE_A])
     {
 		if (currentScene->state.player.collidedRight == false) {
+
 			currentScene->state.player.velocity.x = -3.0f;
-			currentScene->state.player.animIndex = 4;
 		}
     }
     else if  (keys[SDL_SCANCODE_D])
     {
+
 		if (currentScene->state.player.collidedLeft == false) {
 			currentScene->state.player.velocity.x = 3.0f;
-			currentScene->state.player.animIndex = 0;
 		}
     }
 }
@@ -173,6 +184,8 @@ void Render() {
 }
 
 void Shutdown() {
+    Mix_FreeMusic(music);
+    Mix_FreeChunk(jump);
     SDL_Quit();
 }
 

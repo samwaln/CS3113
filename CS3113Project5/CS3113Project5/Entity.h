@@ -17,10 +17,9 @@ enum  EntityType { PLATFORM, PLAYER, COIN, ENEMY };
 enum AIState { IDLE, WALKING, PATROLING, JUMPING }; //add AI states
 enum AIType { WALKER, PATROL, JUMPER };
 
-
 class Entity {
 public:
-
+    
 	EntityType entityType;
 	bool isStatic;
 	bool isActive;

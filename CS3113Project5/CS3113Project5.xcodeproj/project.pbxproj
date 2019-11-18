@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		A96D5ED1238110EF002E8D8A /* stella_walk.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = A96D5ECF2381108A002E8D8A /* stella_walk.png */; };
 		A96D5ED2238110EF002E8D8A /* zombie_n_skeleton2.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = A96D5ED02381108B002E8D8A /* zombie_n_skeleton2.png */; };
+		A96D5ED623823469002E8D8A /* backgroundmusic.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = A96D5ED52382345E002E8D8A /* backgroundmusic.wav */; };
+		A96D5ED723823469002E8D8A /* jump2.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = A96D5ED423822A4A002E8D8A /* jump2.wav */; };
 		A9E5F2332369D7D200B1AED2 /* Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9E5F2312369D7D200B1AED2 /* Util.cpp */; };
 		A9E5F2352369D9DD00B1AED2 /* font.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9E5F2342369D9CE00B1AED2 /* font.png */; };
 		A9E5F2382369E11A00B1AED2 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9E5F2362369E11A00B1AED2 /* Scene.cpp */; };
@@ -38,6 +40,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
+				A96D5ED623823469002E8D8A /* backgroundmusic.wav in CopyFiles */,
+				A96D5ED723823469002E8D8A /* jump2.wav in CopyFiles */,
 				A96D5ED1238110EF002E8D8A /* stella_walk.png in CopyFiles */,
 				A96D5ED2238110EF002E8D8A /* zombie_n_skeleton2.png in CopyFiles */,
 				A9E5F24A2377025900B1AED2 /* evil.png in CopyFiles */,
@@ -54,6 +58,7 @@
 		A96D5ECF2381108A002E8D8A /* stella_walk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stella_walk.png; sourceTree = "<group>"; };
 		A96D5ED02381108B002E8D8A /* zombie_n_skeleton2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zombie_n_skeleton2.png; sourceTree = "<group>"; };
 		A96D5ED423822A4A002E8D8A /* jump2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = jump2.wav; sourceTree = "<group>"; };
+		A96D5ED52382345E002E8D8A /* backgroundmusic.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = backgroundmusic.wav; sourceTree = "<group>"; };
 		A9E5F2312369D7D200B1AED2 /* Util.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Util.cpp; sourceTree = "<group>"; };
 		A9E5F2322369D7D200B1AED2 /* Util.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
 		A9E5F2342369D9CE00B1AED2 /* font.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = font.png; sourceTree = "<group>"; };
@@ -124,6 +129,7 @@
 		DBDF1B512323DE3F007CECB1 /* CS3113Project5 */ = {
 			isa = PBXGroup;
 			children = (
+				A96D5ED52382345E002E8D8A /* backgroundmusic.wav */,
 				A96D5ED423822A4A002E8D8A /* jump2.wav */,
 				DB233D0E23661A3D008B1DEB /* tileset.png */,
 				FAD69120234B8AEC00D9AA86 /* me.png */,
@@ -363,6 +369,7 @@
 				HEADER_SEARCH_PATHS = (
 					/Library/Frameworks/SDL2_image.framework/Versions/A/Headers,
 					/Library/Frameworks/SDL2.framework/Versions/A/Headers,
+					/Library/Frameworks/SDL2_mixer.framework/Versions/A/Headers,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -379,6 +386,7 @@
 				HEADER_SEARCH_PATHS = (
 					/Library/Frameworks/SDL2_image.framework/Versions/A/Headers,
 					/Library/Frameworks/SDL2.framework/Versions/A/Headers,
+					/Library/Frameworks/SDL2_mixer.framework/Versions/A/Headers,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
