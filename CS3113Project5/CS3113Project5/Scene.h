@@ -19,7 +19,7 @@
 #include "Util.h"
 #include "Entity.h"
 #include "Map.h"
-#define ENEMY_COUNT 1
+#define ENEMY_COUNT 2
 struct GameState {
 	Entity player;
 	Map* map;
@@ -29,7 +29,7 @@ struct GameState {
 class Scene {
 public:
 	GameState state;
-	virtual void Initialize() = 0;
+	virtual void Initialize(int lives) = 0;
 	virtual void Update(float deltaTime) = 0;
 	virtual void Render(ShaderProgram* program) = 0;
 };

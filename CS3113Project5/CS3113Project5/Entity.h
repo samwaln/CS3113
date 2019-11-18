@@ -13,7 +13,7 @@
 
 #include "Map.h"
 
-enum  EntityType { PLAYER, PLATFORM, COIN, ENEMY };
+enum  EntityType { PLATFORM, PLAYER, COIN, ENEMY };
 enum AIState { IDLE, WALKING, PATROLING, JUMPING }; //add AI states
 enum AIType { WALKER, PATROL, JUMPER };
 
@@ -25,10 +25,20 @@ public:
 	bool isStatic;
 	bool isActive;
     int lives;
+	glm::vec3 enemyVel;
 
 	glm::vec3 position;
 	glm::vec3 velocity;
 	glm::vec3 acceleration;
+
+	int cols;
+	int rows;
+	std::vector<int> animIndices;
+	int animFrames;
+	int animIndex;
+	float animTime;
+
+
 
 	AIState aiState; //to store state of enemy
 	AIType aiType;
@@ -37,22 +47,18 @@ public:
 	void AI(Entity player); //basically Ai update
 
 	void AIWalker(Entity player);
+	void AIPatrol(Entity player);
+	void AIJump(Entity player);
 
 	float width;
 	float height;
 
 	float speed;
-    
-    int cols;
-    int rows;
-    std::vector<int> animIndices;
-    int animFrames;
-    int animIndex;
-    float animTime;
-
+	void DrawSpriteFromTextureAtlas(ShaderProgram* program, int index);
 	GLuint textureID;
 
 	Entity();
+	void CheckSensors(Map* map);
 
 	bool CheckCollision(Entity other);
 
@@ -61,8 +67,6 @@ public:
 
 	void CheckCollisionsX(Map* map);
 	void CheckCollisionsY(Map* map);
-    
-    void DrawSpriteFromTextureAtlas(ShaderProgram *program, int index);
 
 	void Update(float deltaTime, Entity* objects, int objectCount, Map* map);
 	void Render(ShaderProgram* program);
@@ -73,5 +77,8 @@ public:
 	bool collidedBottom;
 	bool collidedLeft;
 	bool collidedRight;
-
+	glm::vec3 sensorRight;
+	glm::vec3 sensorLeft;
+	bool sensorR;
+	bool sensorL;
 };

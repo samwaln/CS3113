@@ -34,10 +34,12 @@ Menu *menu;
 Level1 *level1;
 Level2 *level2;
 Level3 *level3;
+int currLives = 4;
 
 void SwitchToScene(Scene *scene) {
+	currLives = currentScene->state.player.lives;
     currentScene = scene;
-    currentScene->Initialize();
+    currentScene->Initialize(currLives);
 }
 
 void Initialize() {
@@ -60,7 +62,8 @@ void Initialize() {
     sceneList[1] = new Level1();
     sceneList[2] = new Level2();
     sceneList[3] = new Level3();
-    SwitchToScene(sceneList[0]);
+	currentScene = sceneList[0];
+	currentScene->Initialize(currLives);
     
     viewMatrix = glm::mat4(1.0f);
     modelMatrix = glm::mat4(1.0f);
@@ -93,7 +96,9 @@ void ProcessInput() {
                         currentScene->state.player.Jump();
                         break;
                     case SDLK_RETURN:
-                        currentScene->state.nextLevel = 1;
+						if (currentScene->state.player.lives == 4) {
+							currentScene->state.nextLevel = 1;
+						}
                 }
                 break;
         }
@@ -106,13 +111,17 @@ void ProcessInput() {
     
     if (keys[SDL_SCANCODE_A])
     {
-        currentScene->state.player.velocity.x = -3.0f;
-        currentScene->state.player.animIndex = 4;
+		if (currentScene->state.player.collidedRight == false) {
+			currentScene->state.player.velocity.x = -3.0f;
+			currentScene->state.player.animIndex = 4;
+		}
     }
     else if  (keys[SDL_SCANCODE_D])
     {
-        currentScene->state.player.velocity.x = 3.0f;
-        currentScene->state.player.animIndex = 0;
+		if (currentScene->state.player.collidedLeft == false) {
+			currentScene->state.player.velocity.x = 3.0f;
+			currentScene->state.player.animIndex = 0;
+		}
     }
 }
 

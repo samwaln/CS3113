@@ -8,29 +8,31 @@
 
 #include "Menu.h"
 
-#define MENU_WIDTH 8
+#define MENU_WIDTH 14
 #define MENU_HEIGHT 8
 unsigned int menu_data[] =
 {
-    0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0
+    12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
+    12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
+    12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
+    12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
+    12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
+    12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
+    12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
+    12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12
 };
 
-void Menu::Initialize() {
+void Menu::Initialize(int lives) {
     GLuint mapTextureID = Util::LoadTexture("font.png");
     state.map = new Map(MENU_WIDTH, MENU_HEIGHT, menu_data, mapTextureID, 0.83f, 16, 16);
     state.player.position = glm::vec3(5, 5, 0);
-    state.player.animIndices.push_back(0);
+	state.player.lives = lives;
+	state.player.animIndices.push_back(0);
     state.nextLevel = -1;
 }
 void Menu::Update(float deltaTime) {
     state.player.Update(deltaTime, NULL, 0, state.map);
+	state.player.position = glm::vec3(5, 5, 0);
 }
 void Menu::Render(ShaderProgram *program) {
     state.map->Render(program);
