@@ -376,7 +376,8 @@ void Entity::Update(float deltaTime, Entity* objects, int objectCount, Map* map)
 		if (lastCollision == PLAYER && (collidedLeft == true || collidedRight == true || collidedBottom == true)) {
 			if (objects->lives > 0) {
 				objects->lives -= 1;
-				objects->position = glm::vec3(2, 0, 0);
+				objects->position.y = 2;
+                objects->position.x -= 1;
 				lastCollision = PLATFORM;
 			}
 		}
@@ -393,7 +394,8 @@ void Entity::Update(float deltaTime, Entity* objects, int objectCount, Map* map)
 		if (lastCollision == ENEMY && (collidedLeft == true || collidedRight == true)) {
             if (lives > 0)  {
                 lives-=1;
-				position = glm::vec3(2, 0, 0);
+				position.y = 2;
+                position.x -= 1;
 				lastCollision = PLATFORM;
             }
 		}
@@ -412,6 +414,7 @@ void Entity::Update(float deltaTime, Entity* objects, int objectCount, Map* map)
 		if (lives == 0) {
 			velocity = glm::vec3(0, 0, 0);
 			acceleration = glm::vec3(0, 0, 0);
+            position.y = 10.0;
 		}
 	}
 }
