@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/samanthawaln/Documents/CS3113/CS3113Project5/CS3113Project5.xcodeproj">
+      location = "group:jump2.wav">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>

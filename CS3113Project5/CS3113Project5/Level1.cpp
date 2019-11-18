@@ -36,12 +36,14 @@ void Level1::Initialize() {
     state.player.animIndices.push_back(16);
     state.player.animIndices.push_back(17);
     state.player.animIndices.push_back(18);
+    state.player.animIndices.push_back(18);
     state.player.animIndices.push_back(19);
     state.player.animIndices.push_back(20);
     state.player.animIndices.push_back(21);
     state.player.animIndices.push_back(22);
+    state.player.animIndices.push_back(22);
     state.player.animIndices.push_back(23);
-    state.player.animFrames = 8;
+    state.player.animFrames = 10;
 	state.nextLevel = -1;
 
 	state.enemies[0].entityType = ENEMY;

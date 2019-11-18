@@ -258,7 +258,7 @@ void Entity::Update(float deltaTime, Entity* objects, int objectCount, Map* map)
     
     animTime += deltaTime;
     if (velocity.x > 0) {
-        if (animTime >= 0.2) {
+        if (animTime >= 0.4) {
             animTime = 0.0f;
             animIndex++;
             if (animIndex >= animFrames/2 + 1) {
@@ -267,7 +267,7 @@ void Entity::Update(float deltaTime, Entity* objects, int objectCount, Map* map)
         }
     }
     else if (velocity.x < 0) {
-        if (animTime >= 0.2) {
+        if (animTime >= 0.4) {
             animTime = 0.0f;
             animIndex++;
             if (animIndex >= animFrames) {

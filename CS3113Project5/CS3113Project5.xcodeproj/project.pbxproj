@@ -53,6 +53,7 @@
 /* Begin PBXFileReference section */
 		A96D5ECF2381108A002E8D8A /* stella_walk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stella_walk.png; sourceTree = "<group>"; };
 		A96D5ED02381108B002E8D8A /* zombie_n_skeleton2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zombie_n_skeleton2.png; sourceTree = "<group>"; };
+		A96D5ED423822A4A002E8D8A /* jump2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = jump2.wav; sourceTree = "<group>"; };
 		A9E5F2312369D7D200B1AED2 /* Util.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Util.cpp; sourceTree = "<group>"; };
 		A9E5F2322369D7D200B1AED2 /* Util.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
 		A9E5F2342369D9CE00B1AED2 /* font.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = font.png; sourceTree = "<group>"; };
@@ -123,6 +124,7 @@
 		DBDF1B512323DE3F007CECB1 /* CS3113Project5 */ = {
 			isa = PBXGroup;
 			children = (
+				A96D5ED423822A4A002E8D8A /* jump2.wav */,
 				DB233D0E23661A3D008B1DEB /* tileset.png */,
 				FAD69120234B8AEC00D9AA86 /* me.png */,
 				A96D5ECF2381108A002E8D8A /* stella_walk.png */,
