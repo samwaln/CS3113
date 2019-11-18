@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A96D5ED1238110EF002E8D8A /* stella_walk.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = A96D5ECF2381108A002E8D8A /* stella_walk.png */; };
+		A96D5ED2238110EF002E8D8A /* zombie_n_skeleton2.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = A96D5ED02381108B002E8D8A /* zombie_n_skeleton2.png */; };
 		A9E5F2332369D7D200B1AED2 /* Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9E5F2312369D7D200B1AED2 /* Util.cpp */; };
 		A9E5F2352369D9DD00B1AED2 /* font.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9E5F2342369D9CE00B1AED2 /* font.png */; };
 		A9E5F2382369E11A00B1AED2 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9E5F2362369E11A00B1AED2 /* Scene.cpp */; };
@@ -36,6 +38,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
+				A96D5ED1238110EF002E8D8A /* stella_walk.png in CopyFiles */,
+				A96D5ED2238110EF002E8D8A /* zombie_n_skeleton2.png in CopyFiles */,
 				A9E5F24A2377025900B1AED2 /* evil.png in CopyFiles */,
 				A9E5F2352369D9DD00B1AED2 /* font.png in CopyFiles */,
 				DBDF1B612323DE9E007CECB1 /* shaders in CopyFiles */,
@@ -47,6 +51,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A96D5ECF2381108A002E8D8A /* stella_walk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stella_walk.png; sourceTree = "<group>"; };
+		A96D5ED02381108B002E8D8A /* zombie_n_skeleton2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zombie_n_skeleton2.png; sourceTree = "<group>"; };
 		A9E5F2312369D7D200B1AED2 /* Util.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Util.cpp; sourceTree = "<group>"; };
 		A9E5F2322369D7D200B1AED2 /* Util.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
 		A9E5F2342369D9CE00B1AED2 /* font.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = font.png; sourceTree = "<group>"; };
@@ -119,6 +125,8 @@
 			children = (
 				DB233D0E23661A3D008B1DEB /* tileset.png */,
 				FAD69120234B8AEC00D9AA86 /* me.png */,
+				A96D5ECF2381108A002E8D8A /* stella_walk.png */,
+				A96D5ED02381108B002E8D8A /* zombie_n_skeleton2.png */,
 				FAD6911D234B8AE400D9AA86 /* Entity.cpp */,
 				FAD6911C234B8AE400D9AA86 /* Entity.h */,
 				DBDF1B5B2323DE8D007CECB1 /* glm */,

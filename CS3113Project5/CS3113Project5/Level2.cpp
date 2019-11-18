@@ -26,10 +26,22 @@ void Level2::Initialize() {
     state.map = new Map(LEVEL2_WIDTH, LEVEL2_HEIGHT, level2_data, mapTextureID, 1.0f, 4, 1);
     state.player.entityType = PLAYER;
     state.player.isStatic = false;
-    state.player.width = 1.0f;
-    state.player.position = glm::vec3(5, 0, 0);
+    state.player.lives = 3;
+    state.player.width = 0.9f;
+    state.player.position = glm::vec3(2, 0, 0);
     state.player.acceleration = glm::vec3(0, -9.81f, 0);
-    state.player.textureID = Util::LoadTexture("me.png");
+    state.player.textureID = Util::LoadTexture("stella_walk.png");
+    state.player.cols  = 4;
+    state.player.rows = 8;
+    state.player.animIndices.push_back(16);
+    state.player.animIndices.push_back(17);
+    state.player.animIndices.push_back(18);
+    state.player.animIndices.push_back(19);
+    state.player.animIndices.push_back(20);
+    state.player.animIndices.push_back(21);
+    state.player.animIndices.push_back(22);
+    state.player.animIndices.push_back(23);
+    state.player.animFrames = 8;
     state.nextLevel = -1;
 }
 void Level2::Update(float deltaTime) {

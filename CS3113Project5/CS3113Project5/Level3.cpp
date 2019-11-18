@@ -26,10 +26,22 @@ void Level3::Initialize() {
     state.map = new Map(LEVEL3_WIDTH, LEVEL3_HEIGHT, level3_data, mapTextureID, 1.0f, 4, 1);
     state.player.entityType = PLAYER;
     state.player.isStatic = false;
-    state.player.width = 1.0f;
-    state.player.position = glm::vec3(5, 0, 0);
+    state.player.lives = 3;
+    state.player.width = 0.9f;
+    state.player.position = glm::vec3(2, 0, 0);
     state.player.acceleration = glm::vec3(0, -9.81f, 0);
-    state.player.textureID = Util::LoadTexture("me.png");
+    state.player.textureID = Util::LoadTexture("stella_walk.png");
+    state.player.cols  = 4;
+    state.player.rows = 8;
+    state.player.animIndices.push_back(16);
+    state.player.animIndices.push_back(17);
+    state.player.animIndices.push_back(18);
+    state.player.animIndices.push_back(19);
+    state.player.animIndices.push_back(20);
+    state.player.animIndices.push_back(21);
+    state.player.animIndices.push_back(22);
+    state.player.animIndices.push_back(23);
+    state.player.animFrames = 8;
     state.nextLevel = -1;
 }
 void Level3::Update(float deltaTime) {
@@ -38,5 +50,19 @@ void Level3::Update(float deltaTime) {
 void Level3::Render(ShaderProgram *program) {
     state.map->Render(program);
     state.player.Render(program);
+    if (state.player.position.x > 15) {
+        GLuint fontTextureID = Util::LoadTexture("font.png");
+        if (state.player.lives == 0) {
+            state.player.isActive = false;
+            glm::vec3 loc1 = state.player.position;
+            glm::vec3 loc2 = state.player.position;
+            loc1.x -= 1;
+            loc1.y += 2;
+            loc2.x -= 1;
+            loc2.y += 1;
+            Util::DrawText(program, fontTextureID, "You", 1, -0.2, loc1);
+            Util::DrawText(program, fontTextureID, "Won!", 1, -0.2, loc2);
+        }
+    }
 }
 

@@ -42,6 +42,13 @@ public:
 	float height;
 
 	float speed;
+    
+    int cols;
+    int rows;
+    std::vector<int> animIndices;
+    int animFrames;
+    int animIndex;
+    float animTime;
 
 	GLuint textureID;
 
@@ -54,6 +61,8 @@ public:
 
 	void CheckCollisionsX(Map* map);
 	void CheckCollisionsY(Map* map);
+    
+    void DrawSpriteFromTextureAtlas(ShaderProgram *program, int index);
 
 	void Update(float deltaTime, Entity* objects, int objectCount, Map* map);
 	void Render(ShaderProgram* program);
