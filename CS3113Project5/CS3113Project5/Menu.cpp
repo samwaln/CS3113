@@ -27,6 +27,7 @@ void Menu::Initialize(int lives) {
     state.map = new Map(MENU_WIDTH, MENU_HEIGHT, menu_data, mapTextureID, 0.83f, 16, 16);
     state.player.position = glm::vec3(5, 5, 0);
 	state.player.lives = lives;
+	state.player.animIndices.push_back(0);
     state.nextLevel = -1;
 }
 void Menu::Update(float deltaTime) {

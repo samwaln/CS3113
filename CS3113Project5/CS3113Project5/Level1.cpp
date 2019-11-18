@@ -30,26 +30,57 @@ void Level1::Initialize(int lives) {
 	state.player.width = 0.8f;
 	state.player.position = glm::vec3(2, -1, 0);
 	state.player.acceleration = glm::vec3(0, -9.81f, 0);
-	state.player.textureID = Util::LoadTexture("me.png");
+	state.player.textureID = Util::LoadTexture("stella_walk.png");
+	state.player.cols = 4;
+	state.player.rows = 8;
+	state.player.animIndices.push_back(16);
+	state.player.animIndices.push_back(17);
+	state.player.animIndices.push_back(18);
+	state.player.animIndices.push_back(19);
+	state.player.animIndices.push_back(20);
+	state.player.animIndices.push_back(21);
+	state.player.animIndices.push_back(22);
+	state.player.animIndices.push_back(23);
+	state.player.animFrames = 8;
 	state.nextLevel = -1;
 
 	state.enemies[0].entityType = ENEMY;
 	state.enemies[0].width = 0.9;
-	state.enemies[0].textureID = Util::LoadTexture("evil.png");
+	state.enemies[0].textureID = Util::LoadTexture("zombie_n_skeleton2.png");
 	state.enemies[0].isStatic = false; //it moves!!
 	state.enemies[0].acceleration = glm::vec3(0, -6.4f, 0);
 	state.enemies[0].position = glm::vec3(8.0f, -2.25f, 0.0f);
 	state.enemies[0].aiType = WALKER;
 	state.enemies[0].aiState = IDLE;
+	state.enemies[0].cols = 9;
+	state.enemies[0].rows = 4;
+	state.enemies[0].animIndices.push_back(21);
+	state.enemies[0].animIndices.push_back(22);
+	state.enemies[0].animIndices.push_back(23);
+	state.enemies[0].animIndices.push_back(12);
+	state.enemies[0].animIndices.push_back(13);
+	state.enemies[0].animIndices.push_back(14);
+	state.enemies[0].animFrames = 6;
+	state.enemies[0].animIndex = 3;
 
 	state.enemies[1].entityType = ENEMY;
 	state.enemies[1].width = 0.9;
-	state.enemies[1].textureID = Util::LoadTexture("evil.png");
+	state.enemies[1].textureID = Util::LoadTexture("zombie_n_skeleton2.png");
 	state.enemies[1].isStatic = false; //it moves!!
 	state.enemies[1].acceleration = glm::vec3(0, -6.4f, 0);
 	state.enemies[1].position = glm::vec3(20.0f, -2.25f, 0.0f);
 	state.enemies[1].aiType = WALKER;
 	state.enemies[1].aiState = IDLE;
+	state.enemies[1].cols = 9;
+	state.enemies[1].rows = 4;
+	state.enemies[1].animIndices.push_back(21);
+	state.enemies[1].animIndices.push_back(22);
+	state.enemies[1].animIndices.push_back(23);
+	state.enemies[1].animIndices.push_back(12);
+	state.enemies[1].animIndices.push_back(13);
+	state.enemies[1].animIndices.push_back(14);
+	state.enemies[1].animFrames = 6;
+	state.enemies[1].animIndex = 3;
 }
 
 
@@ -78,6 +109,7 @@ void Level1::Render(ShaderProgram* program) {
 	}
     GLuint fontTextureID = Util::LoadTexture("font.png");
 	if (state.player.lives == 0) {
+		state.player.isActive = false;
 		glm::vec3 loc1 = glm::vec3(0, 0, 0);
 		glm::vec3 loc2 = glm::vec3(0, 0, 0);
 		if (state.player.position.x > 5) {

@@ -113,12 +113,14 @@ void ProcessInput() {
     {
 		if (currentScene->state.player.collidedRight == false) {
 			currentScene->state.player.velocity.x = -3.0f;
+			currentScene->state.player.animIndex = 4;
 		}
     }
     else if  (keys[SDL_SCANCODE_D])
     {
 		if (currentScene->state.player.collidedLeft == false) {
 			currentScene->state.player.velocity.x = 3.0f;
+			currentScene->state.player.animIndex = 0;
 		}
     }
 }

@@ -31,6 +31,15 @@ public:
 	glm::vec3 velocity;
 	glm::vec3 acceleration;
 
+	int cols;
+	int rows;
+	std::vector<int> animIndices;
+	int animFrames;
+	int animIndex;
+	float animTime;
+
+
+
 	AIState aiState; //to store state of enemy
 	AIType aiType;
 	EntityType lastCollision;
@@ -45,7 +54,7 @@ public:
 	float height;
 
 	float speed;
-
+	void DrawSpriteFromTextureAtlas(ShaderProgram* program, int index);
 	GLuint textureID;
 
 	Entity();

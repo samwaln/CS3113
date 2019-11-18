@@ -10,6 +10,11 @@ Entity::Entity()
 	width = 1;
 	height = 1;
 	lives = 1;
+	cols = 1;
+	rows = 1;
+	animFrames = 1;
+	animIndex = 0;
+	animTime = 0.0f;
 }
 
 //check sensors for ai only (right and left sensors to check for pits)
@@ -174,6 +179,53 @@ void Entity::CheckCollisionsX(Map* map)
 	}
 }
 
+void Entity::DrawSpriteFromTextureAtlas(ShaderProgram* program, int index)
+{
+	float width = 1.0f / (float)cols;
+	float height = 1.0 / (float)rows;
+
+	std::vector<float> vertices;
+	std::vector<float> texCoords;
+
+	float u = (float)(index % cols) / (float)cols;
+	float v = (float)(index / cols) / (float)rows;
+
+	texCoords.insert(texCoords.end(), {
+		u, v,
+		u, v + height,
+		u + width, v,
+		u + width, v + height,
+		u + width, v,
+		u, v + height,
+		});
+	vertices.insert(vertices.end(), {
+		-0.5f, 0.5f,
+		-0.5f, -0.5f,
+		0.5f, 0.5f,
+		0.5f, -0.5f,
+		0.5f, 0.5f,
+		-0.5f, -0.5f,
+		});
+	glm::mat4 modelMatrix = glm::mat4(1.0f);
+	modelMatrix = glm::translate(modelMatrix, position);
+	program->SetModelMatrix(modelMatrix);
+
+	glUseProgram(program->programID);
+
+	glVertexAttribPointer(program->positionAttribute, 2, GL_FLOAT, false, 0, vertices.data());
+	glEnableVertexAttribArray(program->positionAttribute);
+
+	glVertexAttribPointer(program->texCoordAttribute, 2, GL_FLOAT, false, 0, texCoords.data());
+	glEnableVertexAttribArray(program->texCoordAttribute);
+
+	glBindTexture(GL_TEXTURE_2D, textureID);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+
+	glDisableVertexAttribArray(program->positionAttribute);
+	glDisableVertexAttribArray(program->texCoordAttribute);
+
+}
+
 
 //different jumps for characters, if player you have
 //a stronger one
@@ -288,6 +340,26 @@ void Entity::Update(float deltaTime, Entity* objects, int objectCount, Map* map)
 	CheckCollisionsX(map);
 	CheckCollisionsX(objects, objectCount); // Fix if needed
 
+
+	animTime += deltaTime;
+	if (velocity.x > 0) {
+		if (animTime >= 0.2) {
+			animTime = 0.0f;
+			animIndex++;
+			if (animIndex >= animFrames / 2 + 1) {
+				animIndex = 0;
+			}
+		}
+	}
+	else if (velocity.x < 0) {
+		if (animTime >= 0.2) {
+			animTime = 0.0f;
+			animIndex++;
+			if (animIndex >= animFrames) {
+				animIndex = animFrames / 2 + 1;
+			}
+		}
+	}
 	
 
 	if (entityType == ENEMY) {
@@ -351,19 +423,5 @@ void Entity::Render(ShaderProgram* program) {
 	modelMatrix = glm::translate(modelMatrix, position);
 	program->SetModelMatrix(modelMatrix);
 
-	float vertices[] = { -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5 };
-	float texCoords[] = { 0.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0 };
-
-	glBindTexture(GL_TEXTURE_2D, textureID);
-
-	glVertexAttribPointer(program->positionAttribute, 2, GL_FLOAT, false, 0, vertices);
-	glEnableVertexAttribArray(program->positionAttribute);
-
-	glVertexAttribPointer(program->texCoordAttribute, 2, GL_FLOAT, false, 0, texCoords);
-	glEnableVertexAttribArray(program->texCoordAttribute);
-
-	glDrawArrays(GL_TRIANGLES, 0, 6);
-
-	glDisableVertexAttribArray(program->positionAttribute);
-	glDisableVertexAttribArray(program->texCoordAttribute);
+	DrawSpriteFromTextureAtlas(program, animIndices.at(animIndex));
 }
