@@ -38,8 +38,8 @@ void Menu::Render(ShaderProgram *program) {
     state.map->Render(program);
     state.player.Render(program);
     GLuint fontTextureID = Util::LoadTexture("font.png");
-    glm::vec3 loc1 = glm::vec3(3.5,-3,0);
+    glm::vec3 loc1 = glm::vec3(1.35,-3,0);
     glm::vec3 loc2 = glm::vec3(1.2,-3.75,0);
-    Util::DrawText(program, fontTextureID, "WELCOME", 1, -0.45, loc1);
+    Util::DrawText(program, fontTextureID, "STELLAR STELLA", 1, -0.45, loc1);
     Util::DrawText(program, fontTextureID, "Press Enter To Start", 0.5, -0.1, loc2);
 }

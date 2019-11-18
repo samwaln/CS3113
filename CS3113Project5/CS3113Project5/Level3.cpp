@@ -130,8 +130,8 @@ void Level3::Render(ShaderProgram *program) {
         glm::vec3 loc1 = glm::vec3(0, 0, 0);
         glm::vec3 loc2 = glm::vec3(0, 0, 0);
         if (state.player.position.x > 5) {
-            loc1 = glm::vec3(state.player.position.x - 1.5, -2.2, 0);
-            loc2 = glm::vec3(state.player.position.x - 1.5, -3.2, 0);
+            loc1 = glm::vec3(state.player.position.x - 1, -3.2, 0);
+            loc2 = glm::vec3(state.player.position.x - 1, -4.2, 0);
         }
         else {
             loc1 = glm::vec3(3.50, -2.2, 0);
