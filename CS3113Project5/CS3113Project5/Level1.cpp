@@ -7,28 +7,28 @@
 //
 
 #include "Level1.h"
-#define LEVEL1_WIDTH 20
+#define LEVEL1_WIDTH 23
 #define LEVEL1_HEIGHT 8
 unsigned int level1_data[] =
 {
-	3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
-	3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
-	3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
-	3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
-	3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 3,
-	3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 0, 2, 1, 0, 0, 3,
-	3, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 2, 2, 2, 0, 2, 2, 1, 1, 3,
-	3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 3
+	6, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 6,
+	6, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 6,
+	6, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 62, 6,
+	6, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 17, 6,
+	6, 12, 12, 12, 12, 12, 12, 10, 10, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 24, 25, 6,
+	6, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 31, 32, 33, 6,
+	6, 0 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 2 , 12, 34, 41, 12, 0 , 1 , 1 , 1 , 1 , 2 , 6,
+	6, 7 , 8 , 8 , 8 , 8 , 8 , 8 , 8 , 8 , 8 , 9 , 12, 12, 12, 12, 7 , 8 , 8 , 8 , 8 , 9 , 6
 };
 
-void Level1::Initialize() {
+void Level1::Initialize(int lives) {
 	GLuint mapTextureID = Util::LoadTexture("tileset.png");
-	state.map = new Map(LEVEL1_WIDTH, LEVEL1_HEIGHT, level1_data, mapTextureID, 1.0f, 4, 1);
+	state.map = new Map(LEVEL1_WIDTH, LEVEL1_HEIGHT, level1_data, mapTextureID, 1.0f, 7, 11);
 	state.player.entityType = PLAYER;
 	state.player.isStatic = false;
     state.player.lives = 3;
-	state.player.width = 0.9f;
-	state.player.position = glm::vec3(2, 0, 0);
+	state.player.width = 0.8f;
+	state.player.position = glm::vec3(2, -1, 0);
 	state.player.acceleration = glm::vec3(0, -9.81f, 0);
 	state.player.textureID = Util::LoadTexture("me.png");
 	state.nextLevel = -1;
@@ -41,7 +41,18 @@ void Level1::Initialize() {
 	state.enemies[0].position = glm::vec3(8.0f, -2.25f, 0.0f);
 	state.enemies[0].aiType = WALKER;
 	state.enemies[0].aiState = IDLE;
+
+	state.enemies[1].entityType = ENEMY;
+	state.enemies[1].width = 0.9;
+	state.enemies[1].textureID = Util::LoadTexture("evil.png");
+	state.enemies[1].isStatic = false; //it moves!!
+	state.enemies[1].acceleration = glm::vec3(0, -6.4f, 0);
+	state.enemies[1].position = glm::vec3(20.0f, -2.25f, 0.0f);
+	state.enemies[1].aiType = WALKER;
+	state.enemies[1].aiState = IDLE;
 }
+
+
 void Level1::Update(float deltaTime) {
 	state.player.Update(deltaTime, state.enemies, ENEMY_COUNT, state.map);
 
@@ -52,11 +63,12 @@ void Level1::Update(float deltaTime) {
 
 
 
-	if (state.player.position.x > 18) {
-		state.nextLevel = 1;
+	if (state.player.position.x >= 21) {
+		state.nextLevel = 2;
 		state.player.position.y = 20;
 	}
 }
+
 void Level1::Render(ShaderProgram* program) {
 	state.map->Render(program);
 	state.player.Render(program);
@@ -66,15 +78,27 @@ void Level1::Render(ShaderProgram* program) {
 	}
     GLuint fontTextureID = Util::LoadTexture("font.png");
 	if (state.player.lives == 0) {
-		glm::vec3 loc1 = state.player.position;
-		glm::vec3 loc2 = state.player.position;
-		//needs more work, the game over screen just follows the player
-		loc1.x -= 1;
-		loc1.y += 2;
-		loc2.x -= 1;
-		loc2.y += 1;
+		glm::vec3 loc1 = glm::vec3(0, 0, 0);
+		glm::vec3 loc2 = glm::vec3(0, 0, 0);
+		if (state.player.position.x > 5) {
+			loc1 = glm::vec3(state.player.position.x - 1.5, -2.2, 0);
+			loc2 = glm::vec3(state.player.position.x - 1.5, -3.2, 0);
+		}
+		else {
+			loc1 = glm::vec3(3.50, -2.2, 0);
+			loc2 = glm::vec3(3.50, -3.2, 0);
+		}
 		Util::DrawText(program, fontTextureID, "Game", 1, -0.2, loc1);
 		Util::DrawText(program, fontTextureID, "Over!", 1, -0.2, loc2);
+		//glm::vec3 loc1 = state.player.position;
+		//glm::vec3 loc2 = state.player.position;
+		////needs more work, the game over screen just follows the player
+		//loc1.x -= 1;
+		//loc1.y += 2;
+		//loc2.x -= 1;
+		//loc2.y += 1;
+		//Util::DrawText(program, fontTextureID, "Game", 1, -0.2, loc1);
+		//Util::DrawText(program, fontTextureID, "Over!", 1, -0.2, loc2);
     }
     glm::vec3 loc = glm::vec3(0,0,0);
     if (state.player.position.x > 5) {

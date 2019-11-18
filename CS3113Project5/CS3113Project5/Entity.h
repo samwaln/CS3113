@@ -13,7 +13,7 @@
 
 #include "Map.h"
 
-enum  EntityType { PLAYER, PLATFORM, COIN, ENEMY };
+enum  EntityType { PLATFORM, PLAYER, COIN, ENEMY };
 enum AIState { IDLE, WALKING, PATROLING, JUMPING }; //add AI states
 enum AIType { WALKER, PATROL, JUMPER };
 
@@ -25,6 +25,7 @@ public:
 	bool isStatic;
 	bool isActive;
     int lives;
+	glm::vec3 enemyVel;
 
 	glm::vec3 position;
 	glm::vec3 velocity;
@@ -37,6 +38,8 @@ public:
 	void AI(Entity player); //basically Ai update
 
 	void AIWalker(Entity player);
+	void AIPatrol(Entity player);
+	void AIJump(Entity player);
 
 	float width;
 	float height;
@@ -46,6 +49,7 @@ public:
 	GLuint textureID;
 
 	Entity();
+	void CheckSensors(Map* map);
 
 	bool CheckCollision(Entity other);
 
@@ -64,5 +68,8 @@ public:
 	bool collidedBottom;
 	bool collidedLeft;
 	bool collidedRight;
-
+	glm::vec3 sensorRight;
+	glm::vec3 sensorLeft;
+	bool sensorR;
+	bool sensorL;
 };
