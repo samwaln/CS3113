@@ -177,7 +177,12 @@ void Update() {
     } else {
         viewMatrix = glm::translate(viewMatrix, glm::vec3(-5, 3.75, 0));
     }
-    
+//    if (currentScene->state.player.position.y > 5) {
+//        viewMatrix = glm::translate(viewMatrix,
+//                                    glm::vec3(3.75, -currentScene->state.player.position.y, 0));
+//    } else {
+//        viewMatrix = glm::translate(viewMatrix, glm::vec3(-5, 3.75, 0));
+//    }
 }
 
 

@@ -7,19 +7,23 @@
 //
 
 #include "Level1.h"
-#define LEVEL1_WIDTH 5
+#define LEVEL1_WIDTH 10
 #define LEVEL1_HEIGHT 4
 unsigned int level1_data[] =
 {
-    12, 12, 12, 12, 12,
-    12, 12, 12, 12, 12,
-    12, 12, 12, 12, 12,
-    12, 12, 12, 12, 12,
+    12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
+    12, 12, 12, 1, 1, 1, 1, 1, 1, 1,
+    12, 12, 12, 1, 12, 12, 12, 12, 12, 12,
+    12, 12, 12, 1, 12, 12, 12, 12, 12, 12,
+    12, 12, 12, 1, 12, 12, 12, 12, 12, 12,
+    12, 12, 12, 1, 12, 12, 12, 12, 12, 12,
+    12, 12, 12, 1, 12, 12, 12, 12, 12, 12,
+    12, 12, 12, 1, 12, 12, 12, 12, 12, 12,
 };
 
 void Level1::Initialize(int lives) {
 	GLuint mapTextureID = Util::LoadTexture("brick_tiles_1.png");
-	state.map = new Map(LEVEL1_WIDTH, LEVEL1_HEIGHT, level1_data, mapTextureID, 1.0f, 1, 6);
+	state.map = new Map(LEVEL1_WIDTH, LEVEL1_HEIGHT, level1_data, mapTextureID, 1.0f, 6, 1);
 	state.player.entityType = PLAYER;
 	state.player.isStatic = false;
     state.player.lives = 3;
