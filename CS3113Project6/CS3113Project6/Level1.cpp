@@ -7,18 +7,14 @@
 //
 
 #include "Level1.h"
-#define LEVEL1_WIDTH 23
-#define LEVEL1_HEIGHT 8
+#define LEVEL1_WIDTH 5
+#define LEVEL1_HEIGHT 4
 unsigned int level1_data[] =
 {
-	6, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 6,
-	6, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 6,
-	6, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 62, 6,
-	6, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 17, 6,
-	6, 12, 12, 12, 12, 12, 12, 10, 10, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 24, 25, 6,
-	6, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 31, 32, 33, 6,
-	6, 0 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 2 , 12, 34, 41, 12, 0 , 1 , 1 , 1 , 1 , 2 , 6,
-	6, 7 , 8 , 8 , 8 , 8 , 8 , 8 , 8 , 8 , 8 , 9 , 12, 12, 12, 12, 7 , 8 , 8 , 8 , 8 , 9 , 6
+    12, 12, 12, 12, 12,
+    12, 12, 12, 12, 12,
+    12, 12, 12, 12, 12,
+    12, 12, 12, 12, 12,
 };
 
 void Level1::Initialize(int lives) {
@@ -29,19 +25,27 @@ void Level1::Initialize(int lives) {
     state.player.lives = 3;
 	state.player.width = 0.8f;
 	state.player.position = glm::vec3(2, -1, 0);
-	state.player.acceleration = glm::vec3(0, -9.81f, 0);
+	state.player.acceleration = glm::vec3(0, 0, 0);
 	state.player.textureID = Util::LoadTexture("Guy.png");
     state.player.cols  = 4;
     state.player.rows = 4;
-    state.player.animIndices.push_back(16);
-    state.player.animIndices.push_back(17);
-    state.player.animIndices.push_back(18);
-    state.player.animIndices.push_back(19);
-    state.player.animIndices.push_back(20);
-    state.player.animIndices.push_back(21);
-    state.player.animIndices.push_back(22);
-    state.player.animIndices.push_back(23);
-    state.player.animFrames = 8;
+    state.player.animIndices.push_back(0);
+    state.player.animIndices.push_back(1);
+    state.player.animIndices.push_back(2);
+    state.player.animIndices.push_back(3);
+    state.player.animIndices.push_back(4);
+    state.player.animIndices.push_back(5);
+    state.player.animIndices.push_back(6);
+    state.player.animIndices.push_back(7);
+    state.player.animIndices.push_back(8);
+    state.player.animIndices.push_back(9);
+    state.player.animIndices.push_back(10);
+    state.player.animIndices.push_back(11);
+    state.player.animIndices.push_back(12);
+    state.player.animIndices.push_back(13);
+    state.player.animIndices.push_back(14);
+    state.player.animIndices.push_back(15);
+    state.player.animFrames = 16;
 	state.nextLevel = -1;
 
 }

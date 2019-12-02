@@ -341,27 +341,51 @@ void Entity::Update(float deltaTime, Entity* objects, int objectCount, Map* map)
 	CheckCollisionsX(objects, objectCount); // Fix if needed
 
 	animTime += deltaTime;
-	if (velocity.x > 0) {
-        if (animIndex >= animFrames / 2) {
+    if (velocity.x > 0) {
+        if (animIndex >= animFrames / 4) {
+            animIndex = 0;
+        }
+        if (animTime >= 0.15) {
+            animTime = 0.0f;
+            animIndex++;
+            if (animIndex >= animFrames / 4) {
+                animIndex = 0;
+            }
+        }
+    }
+    else if (velocity.x < 0) {
+        if (animIndex < animFrames / 4) {
+            animIndex = animFrames / 4;
+        }
+        if (animTime >= 0.15) {
+            animTime = 0.0f;
+            animIndex++;
+            if (animIndex >= animFrames) {
+                animIndex = animFrames / 4;
+            }
+        }
+    }
+	else if (velocity.y > 0) {
+        if (animIndex >= animFrames / 4) {
             animIndex = 0;
         }
 		if (animTime >= 0.15) {
 			animTime = 0.0f;
 			animIndex++;
-			if (animIndex >= animFrames / 2) {
+			if (animIndex >= animFrames / 4) {
 				animIndex = 0;
 			}
 		}
 	}
-	else if (velocity.x < 0) {
-        if (animIndex < animFrames / 2) {
-            animIndex = animFrames / 2;
+	else if (velocity.y < 0) {
+        if (animIndex < animFrames / 4) {
+            animIndex = animFrames / 4;
         }
 		if (animTime >= 0.15) {
 			animTime = 0.0f;
 			animIndex++;
 			if (animIndex >= animFrames) {
-				animIndex = animFrames / 2;
+				animIndex = animFrames / 4;
 			}
 		}
 	}

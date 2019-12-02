@@ -116,6 +116,7 @@ void ProcessInput() {
     }
     
     currentScene->state.player.velocity.x = 0;
+    currentScene->state.player.velocity.y = 0;
     
     // Check for pressed/held keys below
     const Uint8 *keys = SDL_GetKeyboardState(NULL);
@@ -123,16 +124,26 @@ void ProcessInput() {
     if (keys[SDL_SCANCODE_A])
     {
 		if (currentScene->state.player.collidedRight == false) {
-
 			currentScene->state.player.velocity.x = -3.0f;
 		}
     }
     else if  (keys[SDL_SCANCODE_D])
     {
-
 		if (currentScene->state.player.collidedLeft == false) {
 			currentScene->state.player.velocity.x = 3.0f;
 		}
+    }
+    else if  (keys[SDL_SCANCODE_W])
+    {
+        if (currentScene->state.player.collidedTop == false) {
+            currentScene->state.player.velocity.y = 3.0f;
+        }
+    }
+    else if  (keys[SDL_SCANCODE_S])
+    {
+        if (currentScene->state.player.collidedBottom == false) {
+            currentScene->state.player.velocity.y = -3.0f;
+        }
     }
 }
 
