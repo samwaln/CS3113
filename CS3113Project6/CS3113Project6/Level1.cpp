@@ -7,18 +7,28 @@
 //
 
 #include "Level1.h"
-#define LEVEL1_WIDTH 10
-#define LEVEL1_HEIGHT 4
+#define LEVEL1_WIDTH 14
+#define LEVEL1_HEIGHT 18
 unsigned int level1_data[] =
 {
-    12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
-    12, 12, 12, 1, 1, 1, 1, 1, 1, 1,
-    12, 12, 12, 1, 12, 12, 12, 12, 12, 12,
-    12, 12, 12, 1, 12, 12, 12, 12, 12, 12,
-    12, 12, 12, 1, 12, 12, 12, 12, 12, 12,
-    12, 12, 12, 1, 12, 12, 12, 12, 12, 12,
-    12, 12, 12, 1, 12, 12, 12, 12, 12, 12,
-    12, 12, 12, 1, 12, 12, 12, 12, 12, 12,
+    12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
+    12, 12, 12, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    12, 12, 12, 1, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
+    12, 12, 12, 1, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
+    12, 12, 12, 1, 12, 12, 1, 1, 1, 1, 12, 12, 12, 12,
+    12, 12, 12, 1, 12, 12, 1, 12, 12, 12, 12, 12, 12, 12,
+    12, 12, 12, 1, 12, 12, 1, 12, 12, 12, 12, 12, 12, 12,
+    12, 12, 12, 1, 12, 12, 1, 12, 12, 12, 12, 12, 12, 12,
+    12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
+    12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
+    12, 12, 12, 1, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
+    12, 12, 12, 1, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
+    12, 12, 12, 1, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
+    12, 12, 12, 1, 12, 12, 1, 1, 1, 1, 12, 12, 12, 12,
+    12, 12, 12, 1, 12, 12, 1, 12, 12, 12, 12, 12, 12, 12,
+    12, 12, 12, 1, 12, 12, 1, 12, 12, 12, 12, 12, 12, 12,
+    12, 12, 12, 1, 12, 12, 1, 12, 12, 12, 12, 12, 12, 12,
+    12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
 };
 
 void Level1::Initialize(int lives) {
@@ -27,8 +37,8 @@ void Level1::Initialize(int lives) {
 	state.player.entityType = PLAYER;
 	state.player.isStatic = false;
     state.player.lives = 3;
-	state.player.width = 0.8f;
-	state.player.position = glm::vec3(2, -1, 0);
+	state.player.width = 0.7f;
+	state.player.position = glm::vec3(4, -2.5, 0);
 	state.player.acceleration = glm::vec3(0, 0, 0);
 	state.player.textureID = Util::LoadTexture("Guy.png");
     state.player.cols  = 4;
@@ -63,8 +73,6 @@ void Level1::Update(float deltaTime) {
 		state.enemies[i].Update(deltaTime, &state.player, 1, state.map);
 	}
 
-
-
 	if (state.player.position.x >= 21) {
 		state.nextLevel = 2;
 		state.player.position.y = 20;
@@ -93,21 +101,22 @@ void Level1::Render(ShaderProgram* program) {
 		}
 		Util::DrawText(program, fontTextureID, "Game", 1, -0.2, loc1);
 		Util::DrawText(program, fontTextureID, "Over!", 1, -0.2, loc2);
-		//glm::vec3 loc1 = state.player.position;
-		//glm::vec3 loc2 = state.player.position;
-		////needs more work, the game over screen just follows the player
-		//loc1.x -= 1;
-		//loc1.y += 2;
-		//loc2.x -= 1;
-		//loc2.y += 1;
-		//Util::DrawText(program, fontTextureID, "Game", 1, -0.2, loc1);
-		//Util::DrawText(program, fontTextureID, "Over!", 1, -0.2, loc2);
     }
     glm::vec3 loc = glm::vec3(0,0,0);
     if (state.player.position.x > 5) {
-        loc = glm::vec3(state.player.position.x-4.75, -0.2, 0);
+        if (state.player.position.y > -3.75) {
+            loc = glm::vec3(state.player.position.x - 4.75, state.player.position.y + 3.55, 0);
+        }
+        else {
+            loc = glm::vec3(state.player.position.x - 4.75, -0.2, 0);
+        }
     } else {
-        loc = glm::vec3(0.25, -0.2, 0);
+        if (state.player.position.y > -3.75) {
+            loc = glm::vec3(0.25, state.player.position.y + 3.55, 0);
+        }
+        else {
+            loc = glm::vec3(0.25, -0.2, 0);
+        }
     }
-    Util::DrawText(program, fontTextureID, std::to_string(state.player.lives), 1, -0.2, loc);
+//    Util::DrawText(program, fontTextureID, std::to_string(state.player.lives), 1, -0.2, loc);
 }

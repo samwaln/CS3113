@@ -102,10 +102,6 @@ void ProcessInput() {
                 
             case SDL_KEYDOWN:
                 switch (event.key.keysym.sym) {
-                    case SDLK_SPACE:
-                        currentScene->state.player.Jump();
-//                        Mix_PlayChannel(-1, jump, 0);
-                        break;
                     case SDLK_RETURN:
 						if (currentScene->state.player.lives == 4) {
 							currentScene->state.nextLevel = 1;
@@ -123,25 +119,25 @@ void ProcessInput() {
     
     if (keys[SDL_SCANCODE_A])
     {
-		if (currentScene->state.player.collidedRight == false) {
+		if (currentScene->state.player.position.x > 0.25) {
 			currentScene->state.player.velocity.x = -3.0f;
 		}
     }
     else if  (keys[SDL_SCANCODE_D])
     {
-		if (currentScene->state.player.collidedLeft == false) {
+		if (currentScene->state.player.position.x < 14.75) {
 			currentScene->state.player.velocity.x = 3.0f;
 		}
     }
     else if  (keys[SDL_SCANCODE_W])
     {
-        if (currentScene->state.player.collidedTop == false) {
+        if (currentScene->state.player.position.y < -0.5) {
             currentScene->state.player.velocity.y = 3.0f;
         }
     }
     else if  (keys[SDL_SCANCODE_S])
     {
-        if (currentScene->state.player.collidedBottom == false) {
+        if (currentScene->state.player.position.y > -17) {
             currentScene->state.player.velocity.y = -3.0f;
         }
     }
@@ -171,18 +167,23 @@ void Update() {
     accumulator = deltaTime;
 
     viewMatrix = glm::mat4(1.0f);
-    if (currentScene->state.player.position.x > 5) {
+    if (currentScene->state.player.position.x > 5 && currentScene->state.player.position.x < 10) {
         viewMatrix = glm::translate(viewMatrix,
                                     glm::vec3(-currentScene->state.player.position.x, 3.75, 0));
+    } else if (currentScene->state.player.position.x > 10) {
+        viewMatrix = glm::translate(viewMatrix, glm::vec3(-10, 3.75, 0));
     } else {
         viewMatrix = glm::translate(viewMatrix, glm::vec3(-5, 3.75, 0));
     }
-//    if (currentScene->state.player.position.y > 5) {
-//        viewMatrix = glm::translate(viewMatrix,
-//                                    glm::vec3(3.75, -currentScene->state.player.position.y, 0));
-//    } else {
-//        viewMatrix = glm::translate(viewMatrix, glm::vec3(-5, 3.75, 0));
-//    }
+    if (currentScene->state.player.position.y > -13.75 && currentScene->state.player.position.y < -3.75) {
+        viewMatrix = glm::translate(viewMatrix,
+                                    glm::vec3(0, -currentScene->state.player.position.y - 3.75, 0));
+    } else if (currentScene->state.player.position.y < -13.75) {
+        viewMatrix = glm::translate(viewMatrix, glm::vec3(0, 10, 0));
+    }
+    else {
+        viewMatrix = glm::translate(viewMatrix, glm::vec3(0, 0, 0));
+    }
 }
 
 

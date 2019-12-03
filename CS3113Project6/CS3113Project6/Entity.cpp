@@ -76,7 +76,6 @@ void Entity::CheckCollisionsY(Entity* objects, int objectCount)
 			if (lastCollision == ENEMY && collidedBottom == true && collidedLeft == false && collidedRight == false) {
 				objects[i].isActive = false;
 				lastCollision = PLATFORM;
-				Jump();
 			}
 		}
 
@@ -227,80 +226,43 @@ void Entity::DrawSpriteFromTextureAtlas(ShaderProgram* program, int index)
 }
 
 
-//different jumps for characters, if player you have
-//a stronger one
-void Entity::Jump()
-{
-	if (collidedBottom)
-	{
-		if (entityType == ENEMY) {
-			velocity.y = 3.0f;
-		}
-		else {
-			velocity.y = 5.5f;
-		}
-	}
-}
-
 void Entity::AIWalker(Entity player) {
 	switch (aiState) { //do something different depending on state!
-	case IDLE:
-		if (glm::distance(position, player.position) < 3.0f) {
-			aiState = WALKING;
-		}
-		break;
-	case WALKING:
-		if (player.position.x > position.x) {
-			velocity.x = 1.5f; //go right
-		}
-		if (player.position.x < position.x) {
-			velocity.x = -1.5f; //go left	
-		}
-		break;
+        case IDLE:
+            if (glm::distance(position, player.position) < 3.0f) {
+                aiState = WALKING;
+            }
+            break;
+        case WALKING:
+            if (player.position.x > position.x) {
+                velocity.x = 1.5f; //go right
+            }
+            if (player.position.x < position.x) {
+                velocity.x = -1.5f; //go left
+            }
+            break;
+        case PATROLING:
+            break;
 	}
 }
 
 //patrol just walks back and force fom walls and pits
 void Entity::AIPatrol(Entity player) {
 	switch (aiState) { //do something different depending on state!
-	case PATROLING:
-		if (velocity.x == 0) {
-			velocity.x = 1.0f;
-		}
-		if (collidedRight || !sensorR) {
-			velocity.x = -1.0f;
-		}
-		if (collidedLeft || !sensorL) {
-			velocity.x = 1.0f;
-		}
-	}
-}
-
-//jumps when reaching a pit to cross it
-void Entity::AIJump(Entity player) {
-	switch (aiState) { //do something different depending on state!
-	case PATROLING:
-		if (velocity.x == 0) {
-			velocity.x = 2.0f; //go right
-		}
-		if (collidedRight) {
-			velocity.x = -2.0f; //go left	
-		}
-		if (collidedLeft) {
-			velocity.x = 2.0f; //go left	
-		}
-		if ((velocity.x > 0 && !sensorR) || (velocity.x < 0 && !sensorL)) {
-			aiState = JUMPING;
-		}
-		break;
-	case JUMPING:
-		if ((velocity.x > 0 && !sensorR) || (velocity.x < 0 && !sensorL)) {
-			Jump();
-		}
-		if (((velocity.x > 0 && sensorR) || (velocity.x < 0 && sensorL))) {
-			aiState = PATROLING;
-		}
-		break;
+        case IDLE:
+            break;
+        case WALKING:
+            break;
+        case PATROLING:
+            if (velocity.x == 0) {
+                velocity.x = 1.0f;
+            }
+            if (collidedRight || !sensorR) {
+                velocity.x = -1.0f;
+            }
+            if (collidedLeft || !sensorL) {
+                velocity.x = 1.0f;
+            }
 	}
 }
 
@@ -313,11 +275,7 @@ void Entity::AI(Entity player) {
 	case PATROL:
 		AIPatrol(player);
 		break;
-	case JUMPER:
-		AIJump(player);
-		break;
-	}
-
+    }
 }
 
 
@@ -407,14 +365,6 @@ void Entity::Update(float deltaTime, Entity* objects, int objectCount, Map* map)
 		}
 	}
 	if (entityType == PLAYER) {
-		//if you fall off, make it game over
-		if (position.y < -8) {
-            if (lives > 0) {
-                lives-=1;
-                position.x -= 1;
-                position.y = 0;
-            }
-		}
 		if (lastCollision == ENEMY && (collidedLeft == true || collidedRight == true)) {
             if (lives > 0)  {
                 lives-=1;
@@ -423,22 +373,10 @@ void Entity::Update(float deltaTime, Entity* objects, int objectCount, Map* map)
 				lastCollision = PLATFORM;
             }
 		}
-		//else if (lastCollision == ENEMY && collidedBottom == true && collidedLeft == false && collidedRight == false) {
-		//	objects[0].isActive = false;
-		//	lastCollision = PLATFORM;
-		//	Jump();
-		//}
-		//else if (lastCollision == ENEMY && collidedTop == true && collidedLeft == false && collidedRight == false) {
-		//	if (lives > 0) {
-		//		lives -= 1;
-		//		position = glm::vec3(2, 0, 0);
-		//		lastCollision = PLATFORM;
-		//	}
-		//}
 		if (lives == 0) {
 			velocity = glm::vec3(0, 0, 0);
 			acceleration = glm::vec3(0, 0, 0);
-            position.y = 10.0;
+            position.y = 100.0;
 		}
 	}
 }

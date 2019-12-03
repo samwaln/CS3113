@@ -14,8 +14,8 @@
 #include "Map.h"
 
 enum  EntityType { PLATFORM, PLAYER, COIN, ENEMY };
-enum AIState { IDLE, WALKING, PATROLING, JUMPING }; //add AI states
-enum AIType { WALKER, PATROL, JUMPER };
+enum AIState { IDLE, WALKING, PATROLING };
+enum AIType { WALKER, PATROL };
 
 class Entity {
 public:
@@ -47,7 +47,6 @@ public:
 
 	void AIWalker(Entity player);
 	void AIPatrol(Entity player);
-	void AIJump(Entity player);
 
 	float width;
 	float height;
@@ -69,8 +68,6 @@ public:
 
 	void Update(float deltaTime, Entity* objects, int objectCount, Map* map);
 	void Render(ShaderProgram* program);
-
-	void Jump();
 
 	bool collidedTop;
 	bool collidedBottom;
