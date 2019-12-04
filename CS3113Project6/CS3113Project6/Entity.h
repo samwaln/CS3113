@@ -12,6 +12,7 @@
 #include "ShaderProgram.h"
 
 #include "Map.h"
+#include "Util.h"
 
 enum  EntityType { PLATFORM, PLAYER, COIN, ENEMY };
 enum AIState { IDLE, WALKING, PATROLING };
@@ -53,6 +54,7 @@ public:
 
 	float speed;
 	void DrawSpriteFromTextureAtlas(ShaderProgram* program, int index);
+    void DrawLives(ShaderProgram* program, int lifeNumber);
 	GLuint textureID;
 
 	Entity();

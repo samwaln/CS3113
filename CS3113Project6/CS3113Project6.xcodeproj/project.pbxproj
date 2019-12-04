@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		A92342A3238DD363007BA38D /* Guy.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = A92342A2238DD34D007BA38D /* Guy.png */; };
 		A92342A523943389007BA38D /* brick_tiles_1.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = A92342A423943332007BA38D /* brick_tiles_1.png */; };
+		A9BE3EBB23980BA10021E17D /* Vegies.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9BE3EBA23980B830021E17D /* Vegies.png */; };
+		A9BE3EBF23983E000021E17D /* heart_1.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9BE3EBE23983DE60021E17D /* heart_1.png */; };
 		A9E5F2332369D7D200B1AED2 /* Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9E5F2312369D7D200B1AED2 /* Util.cpp */; };
 		A9E5F2352369D9DD00B1AED2 /* font.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9E5F2342369D9CE00B1AED2 /* font.png */; };
 		A9E5F2382369E11A00B1AED2 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9E5F2362369E11A00B1AED2 /* Scene.cpp */; };
 		A9E5F23B2369E17400B1AED2 /* Level1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9E5F2392369E17400B1AED2 /* Level1.cpp */; };
-		A9E5F23E2369E4F100B1AED2 /* Level2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9E5F23C2369E4F100B1AED2 /* Level2.cpp */; };
-		A9E5F2412369E79B00B1AED2 /* Level3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9E5F23F2369E79A00B1AED2 /* Level3.cpp */; };
 		A9E5F247237629D100B1AED2 /* Menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9E5F245237629D100B1AED2 /* Menu.cpp */; };
 		DB233D1223661B3D008B1DEB /* Map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB233D1023661B3D008B1DEB /* Map.cpp */; };
 		DBDF1B532323DE3F007CECB1 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBDF1B522323DE3F007CECB1 /* main.cpp */; };
@@ -35,6 +35,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
+				A9BE3EBF23983E000021E17D /* heart_1.png in CopyFiles */,
+				A9BE3EBB23980BA10021E17D /* Vegies.png in CopyFiles */,
 				A92342A523943389007BA38D /* brick_tiles_1.png in CopyFiles */,
 				A92342A3238DD363007BA38D /* Guy.png in CopyFiles */,
 				A9E5F2352369D9DD00B1AED2 /* font.png in CopyFiles */,
@@ -47,6 +49,8 @@
 /* Begin PBXFileReference section */
 		A92342A2238DD34D007BA38D /* Guy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Guy.png; sourceTree = "<group>"; };
 		A92342A423943332007BA38D /* brick_tiles_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brick_tiles_1.png; sourceTree = "<group>"; };
+		A9BE3EBA23980B830021E17D /* Vegies.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Vegies.png; sourceTree = "<group>"; };
+		A9BE3EBE23983DE60021E17D /* heart_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart_1.png; sourceTree = "<group>"; };
 		A9E5F2312369D7D200B1AED2 /* Util.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Util.cpp; sourceTree = "<group>"; };
 		A9E5F2322369D7D200B1AED2 /* Util.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
 		A9E5F2342369D9CE00B1AED2 /* font.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = font.png; sourceTree = "<group>"; };
@@ -54,10 +58,6 @@
 		A9E5F2372369E11A00B1AED2 /* Scene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
 		A9E5F2392369E17400B1AED2 /* Level1.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Level1.cpp; sourceTree = "<group>"; };
 		A9E5F23A2369E17400B1AED2 /* Level1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Level1.h; sourceTree = "<group>"; };
-		A9E5F23C2369E4F100B1AED2 /* Level2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Level2.cpp; sourceTree = "<group>"; };
-		A9E5F23D2369E4F100B1AED2 /* Level2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Level2.h; sourceTree = "<group>"; };
-		A9E5F23F2369E79A00B1AED2 /* Level3.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Level3.cpp; sourceTree = "<group>"; };
-		A9E5F2402369E79B00B1AED2 /* Level3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Level3.h; sourceTree = "<group>"; };
 		A9E5F245237629D100B1AED2 /* Menu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Menu.cpp; sourceTree = "<group>"; };
 		A9E5F246237629D100B1AED2 /* Menu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Menu.h; sourceTree = "<group>"; };
 		DB233D1023661B3D008B1DEB /* Map.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Map.cpp; sourceTree = "<group>"; };
@@ -114,8 +114,10 @@
 		DBDF1B512323DE3F007CECB1 /* CS3113Project6 */ = {
 			isa = PBXGroup;
 			children = (
+				A9BE3EBE23983DE60021E17D /* heart_1.png */,
 				A92342A2238DD34D007BA38D /* Guy.png */,
 				A92342A423943332007BA38D /* brick_tiles_1.png */,
+				A9BE3EBA23980B830021E17D /* Vegies.png */,
 				A9E5F2342369D9CE00B1AED2 /* font.png */,
 				FAD6911D234B8AE400D9AA86 /* Entity.cpp */,
 				FAD6911C234B8AE400D9AA86 /* Entity.h */,
@@ -131,10 +133,6 @@
 				A9E5F246237629D100B1AED2 /* Menu.h */,
 				A9E5F2392369E17400B1AED2 /* Level1.cpp */,
 				A9E5F23A2369E17400B1AED2 /* Level1.h */,
-				A9E5F23C2369E4F100B1AED2 /* Level2.cpp */,
-				A9E5F23D2369E4F100B1AED2 /* Level2.h */,
-				A9E5F23F2369E79A00B1AED2 /* Level3.cpp */,
-				A9E5F2402369E79B00B1AED2 /* Level3.h */,
 				DB233D1023661B3D008B1DEB /* Map.cpp */,
 				DB233D1123661B3D008B1DEB /* Map.h */,
 				A9E5F2312369D7D200B1AED2 /* Util.cpp */,
@@ -214,11 +212,9 @@
 				A9E5F2382369E11A00B1AED2 /* Scene.cpp in Sources */,
 				DBDF1B532323DE3F007CECB1 /* main.cpp in Sources */,
 				FAD6911E234B8AE400D9AA86 /* Entity.cpp in Sources */,
-				A9E5F2412369E79B00B1AED2 /* Level3.cpp in Sources */,
 				A9E5F247237629D100B1AED2 /* Menu.cpp in Sources */,
 				DB233D1223661B3D008B1DEB /* Map.cpp in Sources */,
 				DBDF1B5E2323DE8D007CECB1 /* ShaderProgram.cpp in Sources */,
-				A9E5F23E2369E4F100B1AED2 /* Level2.cpp in Sources */,
 				A9E5F2332369D7D200B1AED2 /* Util.cpp in Sources */,
 				A9E5F23B2369E17400B1AED2 /* Level1.cpp in Sources */,
 			);

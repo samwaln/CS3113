@@ -17,7 +17,6 @@ Entity::Entity()
 	animTime = 0.0f;
 }
 
-//check sensors for ai only (right and left sensors to check for pits)
 void Entity::CheckSensors(Map* map)
 {
 	float penetration_x = 0;
@@ -56,9 +55,16 @@ void Entity::CheckCollisionsY(Entity* objects, int objectCount)
 	for (int i = 0; i < objectCount; i++)
 	{
 		Entity object = objects[i];
+        Entity *objectP = objects+i;
 
 		if (CheckCollision(object))
 		{
+            if (entityType == PLAYER) {
+                if (object.entityType == COIN) {
+                    objectP->isActive = false;
+                    break;
+                }
+            }
 			float ydist = fabs(position.y - object.position.y);
 			float penetrationY = fabs(ydist - (height / 2) - (object.height / 2));
 			if (velocity.y > 0 ) {
@@ -72,12 +78,6 @@ void Entity::CheckCollisionsY(Entity* objects, int objectCount)
 				collidedBottom = true;
 			}
 		}
-		if (entityType == PLAYER) {
-			if (lastCollision == ENEMY && collidedBottom == true && collidedLeft == false && collidedRight == false) {
-				objects[i].isActive = false;
-				lastCollision = PLATFORM;
-			}
-		}
 
 
 	}
@@ -88,9 +88,16 @@ void Entity::CheckCollisionsX(Entity* objects, int objectCount)
 	for (int i = 0; i < objectCount; i++)
 	{
 		Entity object = objects[i];
+        Entity *objectP = objects+i;
 
 		if (CheckCollision(object))
 		{
+            if (entityType == PLAYER) {
+                if (object.entityType == COIN) {
+                    objectP->isActive = false;
+                    break;
+                }
+            }
 			float xdist = fabs(position.x - object.position.x);
 			float penetrationX = fabs(xdist - (width / 2) - (object.width / 2));
 			if (velocity.x > 0) {
@@ -225,6 +232,31 @@ void Entity::DrawSpriteFromTextureAtlas(ShaderProgram* program, int index)
 
 }
 
+void Entity::DrawLives(ShaderProgram* program, int lifeNumber)
+{
+    GLuint lifeTextureID = Util::LoadTexture("heart_1.png");
+    glm::mat4 modelMatrix = glm::mat4(1.0f);
+    modelMatrix = glm::scale(modelMatrix, glm::vec3(0.5,0.5,0.5));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(1,-1,0));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(lifeNumber,0,0));
+    program->SetModelMatrix(modelMatrix);
+    
+    float vertices[]  = { -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5 };
+    float texCoords[] = { 0.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0 };
+    
+    glBindTexture(GL_TEXTURE_2D, lifeTextureID);
+    
+    glVertexAttribPointer(program->positionAttribute, 2, GL_FLOAT, false, 0, vertices);
+    glEnableVertexAttribArray(program->positionAttribute);
+    
+    glVertexAttribPointer(program->texCoordAttribute, 2, GL_FLOAT, false, 0, texCoords);
+    glEnableVertexAttribArray(program->texCoordAttribute);
+    
+    glDrawArrays(GL_TRIANGLES, 0, 6);
+    
+    glDisableVertexAttribArray(program->positionAttribute);
+    glDisableVertexAttribArray(program->texCoordAttribute);
+}
 
 void Entity::AIWalker(Entity player) {
 	switch (aiState) { //do something different depending on state!
@@ -393,4 +425,9 @@ void Entity::Render(ShaderProgram* program) {
 	program->SetModelMatrix(modelMatrix);
 
 	DrawSpriteFromTextureAtlas(program, animIndices.at(animIndex));
+    if (entityType == PLAYER) {
+        for (int i = 0; i < lives; i++) {
+            DrawLives(program, i);
+        }
+    }
 }

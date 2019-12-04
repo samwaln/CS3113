@@ -18,8 +18,6 @@
 #include "Scene.h"
 #include "Menu.h"
 #include "Level1.h"
-#include "Level2.h"
-#include "Level3.h"
 
 SDL_Window* displayWindow;
 bool gameIsRunning = true;
@@ -33,11 +31,9 @@ Mix_Music* music;
 Mix_Chunk* jump;
 
 Scene *currentScene;
-Scene *sceneList[4];
+Scene *sceneList[2];
 Menu *menu;
 Level1 *level1;
-Level2 *level2;
-Level3 *level3;
 int currLives = 4;
 
 void SwitchToScene(Scene *scene) {
@@ -48,7 +44,7 @@ void SwitchToScene(Scene *scene) {
 
 void Initialize() {
     SDL_Init(SDL_INIT_VIDEO);
-    displayWindow = SDL_CreateWindow("Stellar Stella", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, SDL_WINDOW_OPENGL);
+    displayWindow = SDL_CreateWindow("Top Down", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, SDL_WINDOW_OPENGL);
     SDL_GLContext context = SDL_GL_CreateContext(displayWindow);
     SDL_GL_MakeCurrent(displayWindow, context);
     
@@ -70,8 +66,6 @@ void Initialize() {
     
     sceneList[0] = new Menu();
     sceneList[1] = new Level1();
-    sceneList[2] = new Level2();
-    sceneList[3] = new Level3();
 	currentScene = sceneList[0];
 	currentScene->Initialize(currLives);
     

@@ -61,22 +61,39 @@ void Level1::Initialize(int lives) {
     state.player.animIndices.push_back(15);
     state.player.animFrames = 16;
 	state.nextLevel = -1;
-
+    
+    state.coins[0].position = glm::vec3(8, -2.5, 0);
+    state.coins[0].textureID = Util::LoadTexture("Vegies.png");
+    state.coins[0].entityType = COIN;
+    state.coins[0].animIndices.push_back(0);
+    state.coins[0].animFrames = 1;
+    state.coins[0].cols  = 16;
+    state.coins[0].rows = 8;
+    
+    state.coins[1].position = glm::vec3(4, -4.5, 0);
+    state.coins[1].textureID = Util::LoadTexture("Vegies.png");
+    state.coins[1].entityType = COIN;
+    state.coins[1].animIndices.push_back(1);
+    state.coins[1].animFrames = 1;
+    state.coins[1].cols  = 16;
+    state.coins[1].rows = 8;
+    
 }
 
 
 void Level1::Update(float deltaTime) {
-	state.player.Update(deltaTime, state.enemies, ENEMY_COUNT, state.map);
+	state.player.Update(deltaTime, state.coins, COIN_COUNT, state.map);
+    state.player.Update(deltaTime, state.enemies, ENEMY_COUNT, state.map);
 
 	for (int i = 0; i < ENEMY_COUNT; i++) {
 		//update all the AIs!
 		state.enemies[i].Update(deltaTime, &state.player, 1, state.map);
 	}
+    
+    for (int i = 0; i < COIN_COUNT; i++) {
+        state.coins[i].Update(deltaTime, &state.player, 1, state.map);
+    }
 
-	if (state.player.position.x >= 21) {
-		state.nextLevel = 2;
-		state.player.position.y = 20;
-	}
 }
 
 void Level1::Render(ShaderProgram* program) {
@@ -86,6 +103,10 @@ void Level1::Render(ShaderProgram* program) {
 	{
 		state.enemies[i].Render(program);
 	}
+    for (int i = 0; i < COIN_COUNT; i++)
+    {
+        state.coins[i].Render(program);
+    }
     GLuint fontTextureID = Util::LoadTexture("font.png");
 	if (state.player.lives == 0) {
 		state.player.isActive = false;

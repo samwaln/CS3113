@@ -20,11 +20,14 @@
 #include "Entity.h"
 #include "Map.h"
 #define ENEMY_COUNT 0
+#define COIN_COUNT 2
 struct GameState {
 	Entity player;
 	Map* map;
 	int nextLevel;
 	Entity enemies[ENEMY_COUNT];
+    Entity coins[COIN_COUNT];
+    Entity lives;
 };
 class Scene {
 public:
