@@ -119,7 +119,7 @@ void ProcessInput() {
     }
     else if  (keys[SDL_SCANCODE_D])
     {
-		if (currentScene->state.player.position.x < 14.75) {
+		if (currentScene->state.player.position.x < 27.75) {
 			currentScene->state.player.velocity.x = 3.0f;
 		}
     }
@@ -131,7 +131,7 @@ void ProcessInput() {
     }
     else if  (keys[SDL_SCANCODE_S])
     {
-        if (currentScene->state.player.position.y > -17) {
+        if (currentScene->state.player.position.y > -30) {
             currentScene->state.player.velocity.y = -3.0f;
         }
     }
@@ -161,19 +161,19 @@ void Update() {
     accumulator = deltaTime;
 
     viewMatrix = glm::mat4(1.0f);
-    if (currentScene->state.player.position.x > 5 && currentScene->state.player.position.x < 10) {
+    if (currentScene->state.player.position.x > 5 && currentScene->state.player.position.x < 23) {
         viewMatrix = glm::translate(viewMatrix,
                                     glm::vec3(-currentScene->state.player.position.x, 3.75, 0));
-    } else if (currentScene->state.player.position.x > 10) {
-        viewMatrix = glm::translate(viewMatrix, glm::vec3(-10, 3.75, 0));
+    } else if (currentScene->state.player.position.x > 23) {
+        viewMatrix = glm::translate(viewMatrix, glm::vec3(-23, 3.75, 0));
     } else {
         viewMatrix = glm::translate(viewMatrix, glm::vec3(-5, 3.75, 0));
     }
-    if (currentScene->state.player.position.y > -13.75 && currentScene->state.player.position.y < -3.75) {
+    if (currentScene->state.player.position.y > -26.75 && currentScene->state.player.position.y < -3.75) {
         viewMatrix = glm::translate(viewMatrix,
                                     glm::vec3(0, -currentScene->state.player.position.y - 3.75, 0));
-    } else if (currentScene->state.player.position.y < -13.75) {
-        viewMatrix = glm::translate(viewMatrix, glm::vec3(0, 10, 0));
+    } else if (currentScene->state.player.position.y < -26.75) {
+        viewMatrix = glm::translate(viewMatrix, glm::vec3(0, 23, 0));
     }
     else {
         viewMatrix = glm::translate(viewMatrix, glm::vec3(0, 0, 0));

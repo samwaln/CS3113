@@ -27,7 +27,7 @@ struct GameState {
 	int nextLevel;
 	Entity enemies[ENEMY_COUNT];
     Entity coins[COIN_COUNT];
-    Entity lives;
+    Entity chest;
 };
 class Scene {
 public:

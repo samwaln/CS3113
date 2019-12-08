@@ -14,7 +14,7 @@
 #include "Map.h"
 #include "Util.h"
 
-enum  EntityType { PLATFORM, PLAYER, COIN, ENEMY };
+enum  EntityType { PLATFORM, PLAYER, COIN, ENEMY, CHEST };
 enum AIState { IDLE, WALKING, PATROLING };
 enum AIType { WALKER, PATROL };
 
