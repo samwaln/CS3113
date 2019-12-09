@@ -237,8 +237,26 @@ void Entity::DrawLives(ShaderProgram* program, int lifeNumber)
 {
     GLuint lifeTextureID = Util::LoadTexture("heart_1.png");
     glm::mat4 modelMatrix = glm::mat4(1.0f);
+    
+    glm::vec3 loc = glm::vec3(0,0,0);
+    if (position.x > 5) {
+        if (position.y > -3.75) {
+            loc = glm::vec3(position.x - 4.75, position.y + 3.55, 0);
+        }
+        else {
+            loc = glm::vec3(position.x - 4.75, -0.2, 0);
+        }
+    } else {
+        if (position.y < -3.75) {
+            loc = glm::vec3(1, position.y + 2.75, 0);
+        }
+        else {
+            loc = glm::vec3(1, -1, 0);
+        }
+    }
+    
+    modelMatrix = glm::translate(modelMatrix, loc);
     modelMatrix = glm::scale(modelMatrix, glm::vec3(0.5,0.5,0.5));
-    modelMatrix = glm::translate(modelMatrix, glm::vec3(1,-1,0));
     modelMatrix = glm::translate(modelMatrix, glm::vec3(lifeNumber,0,0));
     program->SetModelMatrix(modelMatrix);
     

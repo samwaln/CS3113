@@ -149,21 +149,5 @@ void Level1::Render(ShaderProgram* program) {
         Util::DrawText(program, fontTextureID, "You", 1, -0.2, glm::vec3(4,-3,0));
         Util::DrawText(program, fontTextureID, "Won!", 1, -0.2, glm::vec3(4,-4,0));
     }
-    glm::vec3 loc = glm::vec3(0,0,0);
-    if (state.player.position.x > 5) {
-        if (state.player.position.y > -3.75) {
-            loc = glm::vec3(state.player.position.x - 4.75, state.player.position.y + 3.55, 0);
-        }
-        else {
-            loc = glm::vec3(state.player.position.x - 4.75, -0.2, 0);
-        }
-    } else {
-        if (state.player.position.y > -3.75) {
-            loc = glm::vec3(0.25, state.player.position.y + 3.55, 0);
-        }
-        else {
-            loc = glm::vec3(0.25, -0.2, 0);
-        }
-    }
 //    Util::DrawText(program, fontTextureID, std::to_string(state.player.lives), 1, -0.2, loc);
 }
