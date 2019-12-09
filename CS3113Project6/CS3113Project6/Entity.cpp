@@ -61,7 +61,10 @@ void Entity::CheckCollisionsY(Entity* objects, int objectCount)
 		{
             if (entityType == PLAYER) {
                 if (object.entityType == COIN) {
-                    objectP->isActive = false;
+                    if (lives < 3) {
+                        objectP->isActive = false;
+                        lives++;
+                    }
                     break;
                 }
             }
@@ -94,7 +97,10 @@ void Entity::CheckCollisionsX(Entity* objects, int objectCount)
 		{
             if (entityType == PLAYER) {
                 if (object.entityType == COIN) {
-                    objectP->isActive = false;
+                    if (lives < 3) {
+                        objectP->isActive = false;
+                        lives++;
+                    }
                     break;
                 }
             }
@@ -239,25 +245,42 @@ void Entity::DrawLives(ShaderProgram* program, int lifeNumber)
     glm::mat4 modelMatrix = glm::mat4(1.0f);
     
     glm::vec3 loc = glm::vec3(0,0,0);
-    if (position.x > 5) {
-        if (position.y > -3.75) {
-            loc = glm::vec3(position.x - 4.75, position.y + 3.55, 0);
+    if (position.x > 23) {
+        if (position.y < -26.75) {
+            loc = glm::vec3(27.75, -23.2, 0);
+        }
+        else if (position.y < -3.75) {
+            loc = glm::vec3(27.75, position.y + 3.55, 0);
         }
         else {
-            loc = glm::vec3(position.x - 4.75, -0.2, 0);
+            loc = glm::vec3(27.75, -0.2, 0);
+        }
+    }
+    else if (position.x > 5) {
+        if (position.y < -26.75) {
+            loc = glm::vec3(position.x + 4.75, -23.2, 0);
+        }
+        else if (position.y < -3.75) {
+            loc = glm::vec3(position.x + 4.75, position.y + 3.55, 0);
+        }
+        else {
+            loc = glm::vec3(position.x + 4.75, -0.2, 0);
         }
     } else {
-        if (position.y < -3.75) {
-            loc = glm::vec3(1, position.y + 2.75, 0);
+        if (position.y < -26.75) {
+            loc = glm::vec3(9.75, -23.2, 0);
+        }
+        else if (position.y < -3.75) {
+            loc = glm::vec3(9.75, position.y + 3.55, 0);
         }
         else {
-            loc = glm::vec3(1, -1, 0);
+            loc = glm::vec3(9.75, -0.2, 0);
         }
     }
     
     modelMatrix = glm::translate(modelMatrix, loc);
     modelMatrix = glm::scale(modelMatrix, glm::vec3(0.5,0.5,0.5));
-    modelMatrix = glm::translate(modelMatrix, glm::vec3(lifeNumber,0,0));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(-lifeNumber,0,0));
     program->SetModelMatrix(modelMatrix);
     
     float vertices[]  = { -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5 };
@@ -275,6 +298,11 @@ void Entity::DrawLives(ShaderProgram* program, int lifeNumber)
     
     glDisableVertexAttribArray(program->positionAttribute);
     glDisableVertexAttribArray(program->texCoordAttribute);
+    
+    if (lives == 3) {
+        GLuint fontTextureID = Util::LoadTexture("font.png");
+        Util::DrawText(program, fontTextureID, "MAX", 0.3, -0.1, glm::vec3(loc.x-0.4,loc.y-0.3,0));
+    }
 }
 
 void Entity::AIWalker(Entity player) {

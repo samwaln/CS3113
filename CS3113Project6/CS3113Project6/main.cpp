@@ -28,7 +28,8 @@ glm::mat4 viewMatrix, modelMatrix, projectionMatrix;
 GLuint fontTextureID;
 
 Mix_Music* music;
-Mix_Chunk* jump;
+Mix_Chunk* life;
+Mix_Chunk* won;
 
 Scene *currentScene;
 Scene *sceneList[2];
@@ -56,11 +57,13 @@ void Initialize() {
     
     program.Load("shaders/vertex_textured.glsl", "shaders/fragment_textured.glsl");
     
-//    Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 4096);
-//    music = Mix_LoadMUS("backgroundmusic.wav");
-//    jump = Mix_LoadWAV("jump2.wav");
-//    Mix_VolumeChunk(jump, MIX_MAX_VOLUME * 4);
-//    Mix_PlayMusic(music, -1);
+    Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 4096);
+    music = Mix_LoadMUS("backgroundmusic.wav");
+    life = Mix_LoadWAV("life.wav");
+    Mix_VolumeChunk(life, MIX_MAX_VOLUME * 4);
+    won = Mix_LoadWAV("win.wav");
+    Mix_VolumeChunk(won, MIX_MAX_VOLUME * 4);
+    Mix_PlayMusic(music, -1);
     
     fontTextureID = Util::LoadTexture("font.png");
     
@@ -113,27 +116,36 @@ void ProcessInput() {
     
     if (keys[SDL_SCANCODE_A])
     {
-		if (currentScene->state.player.position.x > 0.25) {
-			currentScene->state.player.velocity.x = -3.0f;
-		}
+        if (!(currentScene->state.player.position.x < 1.5 && currentScene->state.player.position.y > -1)) {
+            if (currentScene->state.player.position.x > 0.25) {
+                currentScene->state.player.velocity.x = -3.0f;
+            }
+        }
     }
     else if  (keys[SDL_SCANCODE_D])
     {
-		if (currentScene->state.player.position.x < 27.75) {
-			currentScene->state.player.velocity.x = 3.0f;
-		}
+        if (!(currentScene->state.player.position.x < 1.5 && currentScene->state.player.position.y > -1)) {
+            if (currentScene->state.player.position.x < 27.75) {
+                currentScene->state.player.velocity.x = 3.0f;
+            }
+        }
     }
     else if  (keys[SDL_SCANCODE_W])
     {
-        if (currentScene->state.player.position.y < -0.5) {
-            currentScene->state.player.velocity.y = 3.0f;
+        if (!(currentScene->state.player.position.x < 1.5 && currentScene->state.player.position.y > -1)) {
+            if (currentScene->state.player.position.y < -0.5) {
+                currentScene->state.player.velocity.y = 3.0f;
+            }
         }
     }
     else if  (keys[SDL_SCANCODE_S])
     {
-        if (currentScene->state.player.position.y > -30) {
-            currentScene->state.player.velocity.y = -3.0f;
+        if (!(currentScene->state.player.position.x < 1.5 && currentScene->state.player.position.y > -1)) {
+            if (currentScene->state.player.position.y > -30) {
+                currentScene->state.player.velocity.y = -3.0f;
+            }
         }
+        Mix_PlayChannel(-1, won, 0);
     }
 }
 
@@ -195,8 +207,9 @@ void Render() {
 }
 
 void Shutdown() {
-//    Mix_FreeMusic(music);
-//    Mix_FreeChunk(jump);
+    Mix_FreeMusic(music);
+    Mix_FreeChunk(life);
+    Mix_FreeChunk(won);
     SDL_Quit();
 }
 

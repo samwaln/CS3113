@@ -74,12 +74,13 @@ void Level1::Initialize(int lives) {
     state.player.animIndices.push_back(14);
     state.player.animIndices.push_back(15);
     state.player.animFrames = 16;
+    state.player.lives = 1;
 	state.nextLevel = -1;
     
     state.coins[0].position = glm::vec3(8, -2.5, 0);
     state.coins[0].textureID = Util::LoadTexture("Vegies.png");
     state.coins[0].entityType = COIN;
-    state.coins[0].animIndices.push_back(0);
+    state.coins[0].animIndices.push_back(12);
     state.coins[0].animFrames = 1;
     state.coins[0].cols  = 16;
     state.coins[0].rows = 8;
@@ -91,6 +92,22 @@ void Level1::Initialize(int lives) {
     state.coins[1].animFrames = 1;
     state.coins[1].cols  = 16;
     state.coins[1].rows = 8;
+    
+    state.coins[2].position = glm::vec3(18, -29.5, 0);
+    state.coins[2].textureID = Util::LoadTexture("Vegies.png");
+    state.coins[2].entityType = COIN;
+    state.coins[2].animIndices.push_back(2);
+    state.coins[2].animFrames = 1;
+    state.coins[2].cols  = 16;
+    state.coins[2].rows = 8;
+    
+    state.coins[3].position = glm::vec3(4, -26.5, 0);
+    state.coins[3].textureID = Util::LoadTexture("Vegies.png");
+    state.coins[3].entityType = COIN;
+    state.coins[3].animIndices.push_back(3);
+    state.coins[3].animFrames = 1;
+    state.coins[3].cols  = 16;
+    state.coins[3].rows = 8;
     
     state.chest.position = glm::vec3(0.75,-0.5,0);
     state.chest.textureID = Util::LoadTexture("chest.png");

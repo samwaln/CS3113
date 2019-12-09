@@ -20,7 +20,7 @@
 #include "Entity.h"
 #include "Map.h"
 #define ENEMY_COUNT 0
-#define COIN_COUNT 2
+#define COIN_COUNT 4
 struct GameState {
 	Entity player;
 	Map* map;
