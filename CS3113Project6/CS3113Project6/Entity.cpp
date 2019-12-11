@@ -7,14 +7,16 @@ Entity::Entity()
 	isActive = true;
 	position = glm::vec3(0);
 	speed = 0;
-	width = 1;
-	height = 1;
+	width = 0.7;
+	height = 0.7;
 	lives = 1;
 	cols = 1;
 	rows = 1;
 	animFrames = 1;
 	animIndex = 0;
 	animTime = 0.0f;
+    won = false;
+    soundPlayed = false;
 }
 
 void Entity::CheckSensors(Map* map)
@@ -55,22 +57,22 @@ void Entity::CheckCollisionsY(Entity* objects, int objectCount)
 	for (int i = 0; i < objectCount; i++)
 	{
 		Entity object = objects[i];
-        Entity *objectP = objects+i;
+		Entity* objectP = objects + i;
 
 		if (CheckCollision(object))
 		{
-            if (entityType == PLAYER) {
-                if (object.entityType == COIN) {
-                    if (lives < 3) {
-                        objectP->isActive = false;
-                        lives++;
-                    }
-                    break;
-                }
-            }
+			if (entityType == PLAYER) {
+				if (object.entityType == COIN) {
+					if (lives < 3) {
+						objectP->isActive = false;
+						lives++;
+					}
+					break;
+				}
+			}
 			float ydist = fabs(position.y - object.position.y);
 			float penetrationY = fabs(ydist - (height / 2) - (object.height / 2));
-			if (velocity.y > 0 ) {
+			if (velocity.y > 0) {
 				position.y -= penetrationY;
 				velocity.y = 0;
 				collidedTop = true;
@@ -91,19 +93,19 @@ void Entity::CheckCollisionsX(Entity* objects, int objectCount)
 	for (int i = 0; i < objectCount; i++)
 	{
 		Entity object = objects[i];
-        Entity *objectP = objects+i;
+		Entity* objectP = objects + i;
 
 		if (CheckCollision(object))
 		{
-            if (entityType == PLAYER) {
-                if (object.entityType == COIN) {
-                    if (lives < 3) {
-                        objectP->isActive = false;
-                        lives++;
-                    }
-                    break;
-                }
-            }
+			if (entityType == PLAYER) {
+				if (object.entityType == COIN) {
+					if (lives < 3) {
+						objectP->isActive = false;
+						lives++;
+					}
+					break;
+				}
+			}
 			float xdist = fabs(position.x - object.position.x);
 			float penetrationX = fabs(xdist - (width / 2) - (object.width / 2));
 			if (velocity.x > 0) {
@@ -220,7 +222,7 @@ void Entity::DrawSpriteFromTextureAtlas(ShaderProgram* program, int index)
 		});
 	glm::mat4 modelMatrix = glm::mat4(1.0f);
 	modelMatrix = glm::translate(modelMatrix, position);
-    modelMatrix = glm::scale(modelMatrix, glm::vec3(0.8,0.8,1));
+	modelMatrix = glm::scale(modelMatrix, glm::vec3(0.8, 0.8, 1));
 	program->SetModelMatrix(modelMatrix);
 
 	glUseProgram(program->programID);
@@ -241,121 +243,180 @@ void Entity::DrawSpriteFromTextureAtlas(ShaderProgram* program, int index)
 
 void Entity::DrawLives(ShaderProgram* program, int lifeNumber)
 {
-    GLuint lifeTextureID = Util::LoadTexture("heart_1.png");
-    glm::mat4 modelMatrix = glm::mat4(1.0f);
-    
-    glm::vec3 loc = glm::vec3(0,0,0);
-    if (position.x > 23) {
-        if (position.y < -26.75) {
-            loc = glm::vec3(27.75, -23.2, 0);
-        }
-        else if (position.y < -3.75) {
-            loc = glm::vec3(27.75, position.y + 3.55, 0);
-        }
-        else {
-            loc = glm::vec3(27.75, -0.2, 0);
-        }
-    }
-    else if (position.x > 5) {
-        if (position.y < -26.75) {
-            loc = glm::vec3(position.x + 4.75, -23.2, 0);
-        }
-        else if (position.y < -3.75) {
-            loc = glm::vec3(position.x + 4.75, position.y + 3.55, 0);
-        }
-        else {
-            loc = glm::vec3(position.x + 4.75, -0.2, 0);
-        }
-    } else {
-        if (position.y < -26.75) {
-            loc = glm::vec3(9.75, -23.2, 0);
-        }
-        else if (position.y < -3.75) {
-            loc = glm::vec3(9.75, position.y + 3.55, 0);
-        }
-        else {
-            loc = glm::vec3(9.75, -0.2, 0);
-        }
-    }
-    
-    modelMatrix = glm::translate(modelMatrix, loc);
-    modelMatrix = glm::scale(modelMatrix, glm::vec3(0.5,0.5,0.5));
-    modelMatrix = glm::translate(modelMatrix, glm::vec3(-lifeNumber,0,0));
-    program->SetModelMatrix(modelMatrix);
-    
-    float vertices[]  = { -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5 };
-    float texCoords[] = { 0.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0 };
-    
-    glBindTexture(GL_TEXTURE_2D, lifeTextureID);
-    
-    glVertexAttribPointer(program->positionAttribute, 2, GL_FLOAT, false, 0, vertices);
-    glEnableVertexAttribArray(program->positionAttribute);
-    
-    glVertexAttribPointer(program->texCoordAttribute, 2, GL_FLOAT, false, 0, texCoords);
-    glEnableVertexAttribArray(program->texCoordAttribute);
-    
-    glDrawArrays(GL_TRIANGLES, 0, 6);
-    
-    glDisableVertexAttribArray(program->positionAttribute);
-    glDisableVertexAttribArray(program->texCoordAttribute);
-    
-    if (lives == 3) {
-        GLuint fontTextureID = Util::LoadTexture("font.png");
-        Util::DrawText(program, fontTextureID, "MAX", 0.3, -0.1, glm::vec3(loc.x-0.4,loc.y-0.3,0));
-    }
-}
+	GLuint lifeTextureID = Util::LoadTexture("heart_1.png");
+	glm::mat4 modelMatrix = glm::mat4(1.0f);
 
-void Entity::AIWalker(Entity player) {
-	switch (aiState) { //do something different depending on state!
-        case IDLE:
-            if (glm::distance(position, player.position) < 3.0f) {
-                aiState = WALKING;
-            }
-            break;
-        case WALKING:
-            if (player.position.x > position.x) {
-                velocity.x = 1.5f; //go right
-            }
-            if (player.position.x < position.x) {
-                velocity.x = -1.5f; //go left
-            }
-            break;
-        case PATROLING:
-            break;
+	glm::vec3 loc = glm::vec3(0, 0, 0);
+	if (position.x > 23) {
+		if (position.y < -26.75) {
+			loc = glm::vec3(27.75, -23.2, 0);
+		}
+		else if (position.y < -3.75) {
+			loc = glm::vec3(27.75, position.y + 3.55, 0);
+		}
+		else {
+			loc = glm::vec3(27.75, -0.2, 0);
+		}
+	}
+	else if (position.x > 5) {
+		if (position.y < -26.75) {
+			loc = glm::vec3(position.x + 4.75, -23.2, 0);
+		}
+		else if (position.y < -3.75) {
+			loc = glm::vec3(position.x + 4.75, position.y + 3.55, 0);
+		}
+		else {
+			loc = glm::vec3(position.x + 4.75, -0.2, 0);
+		}
+	}
+	else {
+		if (position.y < -26.75) {
+			loc = glm::vec3(9.75, -23.2, 0);
+		}
+		else if (position.y < -3.75) {
+			loc = glm::vec3(9.75, position.y + 3.55, 0);
+		}
+		else {
+			loc = glm::vec3(9.75, -0.2, 0);
+		}
+	}
+
+	modelMatrix = glm::translate(modelMatrix, loc);
+	modelMatrix = glm::scale(modelMatrix, glm::vec3(0.5, 0.5, 0.5));
+	modelMatrix = glm::translate(modelMatrix, glm::vec3(-lifeNumber, 0, 0));
+	program->SetModelMatrix(modelMatrix);
+
+	float vertices[] = { -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5 };
+	float texCoords[] = { 0.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0 };
+
+	glBindTexture(GL_TEXTURE_2D, lifeTextureID);
+
+	glVertexAttribPointer(program->positionAttribute, 2, GL_FLOAT, false, 0, vertices);
+	glEnableVertexAttribArray(program->positionAttribute);
+
+	glVertexAttribPointer(program->texCoordAttribute, 2, GL_FLOAT, false, 0, texCoords);
+	glEnableVertexAttribArray(program->texCoordAttribute);
+
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+
+	glDisableVertexAttribArray(program->positionAttribute);
+	glDisableVertexAttribArray(program->texCoordAttribute);
+
+	if (lives == 3) {
+		GLuint fontTextureID = Util::LoadTexture("font.png");
+		Util::DrawText(program, fontTextureID, "MAX", 0.3, -0.1, glm::vec3(loc.x - 0.4, loc.y - 0.3, 0));
 	}
 }
 
 //patrol just walks back and force fom walls and pits
-void Entity::AIPatrol(Entity player) {
+void Entity::AIHorizontal(Entity player) {
 	switch (aiState) { //do something different depending on state!
-        case IDLE:
-            break;
-        case WALKING:
-            break;
-        case PATROLING:
-            if (velocity.x == 0) {
-                velocity.x = 1.0f;
-            }
-            if (collidedRight || !sensorR) {
-                velocity.x = -1.0f;
-            }
-            if (collidedLeft || !sensorL) {
-                velocity.x = 1.0f;
-            }
+	case IDLE:
+		break;
+	case WALKING:
+		break;
+	case PATROLING:
+		if (velocity.x == 0) {
+			velocity.x = 1.0f;
+		}
+		if (collidedRight) {
+			velocity.x = -1.0f;
+		}
+		if (collidedLeft) {
+			velocity.x = 1.0f;
+		}
+	}
+}
+
+//patrol just walks back and force fom walls and pits
+void Entity::AIVertical(Entity player) {
+	switch (aiState) { //do something different depending on state!
+	case IDLE:
+		break;
+	case WALKING:
+		break;
+	case PATROLING:
+		if (velocity.y == 0) {
+			velocity.y = 1.0f;
+		}
+		if (collidedTop) {
+			velocity.y = -1.0f;
+		}
+		if (collidedBottom) {
+			velocity.y = 1.0f;
+		}
+	}
+}
+
+void Entity::AIJab(Entity player) {
+	switch (aiState) { //do something different depending on state!
+	case LUNGEDOWN:
+		velocity.y = -5;
+		if (collidedBottom) {
+			velocity.y = 0.5;
+			aiState = RETURNING;
+		}
+		break;
+	case RETURNING:
+		if (collidedTop) {
+			aiState = LUNGEDOWN;
+		}
+		break;
+	}
+}
+
+void Entity::AICircle(Entity player) {
+	switch (aiState) { //do something different depending on state!
+	case CIRCLE:
+		if (collidedBottom) {
+			position.y += 0.1;
+			velocity.x = 5;
+			velocity.y = 0;
+		}
+		if (collidedTop) {
+			position.y -= 0.1;
+			velocity.x = -5;
+			velocity.y = 0;
+		}
+		if (collidedRight) {
+			position.x -= 0.1;
+			velocity.x = 0;
+			velocity.y = 5;
+		}
+		if (collidedLeft) {
+			position.x += 0.1;
+			velocity.x = 0;
+			velocity.y = -5;
+
+		}
+		break;
+	case START:
+		velocity.x = -5;
+		aiState = CIRCLE;
+		break;
 	}
 }
 
 void Entity::AI(Entity player) {
 	switch (aiType) {
-	case WALKER:
+	case VERTICAL:
 		//call an AI walker function
-		AIWalker(player);
+		AIVertical(player);
 		break;
-	case PATROL:
-		AIPatrol(player);
+	case HORIZONTAL:
+		AIHorizontal(player);
 		break;
-    }
+	case JABBER:
+		AIJab(player);
+		break;
+	case CIRCLER:
+		AICircle(player);
+		break;
+	}
 }
+
+
+
 
 
 
@@ -378,34 +439,34 @@ void Entity::Update(float deltaTime, Entity* objects, int objectCount, Map* map)
 	CheckCollisionsX(objects, objectCount); // Fix if needed
 
 	animTime += deltaTime;
-    if (velocity.x > 0) {
-        if (animIndex >= 3 * animFrames / 4 || animIndex < animFrames / 2) {
-            animIndex = animFrames / 2;
-        }
-        if (animTime >= 0.15) {
-            animTime = 0.0f;
-            animIndex++;
-            if (animIndex >= 3 * animFrames / 4) {
-                animIndex = animFrames / 2;
-            }
-        }
-    }
-    else if (velocity.x < 0) {
-        if (animIndex < 3 * animFrames / 4) {
-            animIndex = 3 * animFrames / 4;
-        }
-        if (animTime >= 0.15) {
-            animTime = 0.0f;
-            animIndex++;
-            if (animIndex >= animFrames) {
-                animIndex = 3 * animFrames / 4;
-            }
-        }
-    }
+	if (velocity.x > 0) {
+		if (animIndex >= 3 * animFrames / 4 || animIndex < animFrames / 2) {
+			animIndex = animFrames / 2;
+		}
+		if (animTime >= 0.15) {
+			animTime = 0.0f;
+			animIndex++;
+			if (animIndex >= 3 * animFrames / 4) {
+				animIndex = animFrames / 2;
+			}
+		}
+	}
+	else if (velocity.x < 0) {
+		if (animIndex < 3 * animFrames / 4) {
+			animIndex = 3 * animFrames / 4;
+		}
+		if (animTime >= 0.15) {
+			animTime = 0.0f;
+			animIndex++;
+			if (animIndex >= animFrames) {
+				animIndex = 3 * animFrames / 4;
+			}
+		}
+	}
 	else if (velocity.y > 0) {
-        if (animIndex >= animFrames / 4) {
-            animIndex = 0;
-        }
+		if (animIndex >= animFrames / 4) {
+			animIndex = 0;
+		}
 		if (animTime >= 0.15) {
 			animTime = 0.0f;
 			animIndex++;
@@ -415,9 +476,9 @@ void Entity::Update(float deltaTime, Entity* objects, int objectCount, Map* map)
 		}
 	}
 	else if (velocity.y < 0) {
-        if (animIndex < animFrames / 4 || animIndex >= animFrames / 2) {
-            animIndex = animFrames / 4;
-        }
+		if (animIndex < animFrames / 4 || animIndex >= animFrames / 2) {
+			animIndex = animFrames / 4;
+		}
 		if (animTime >= 0.15) {
 			animTime = 0.0f;
 			animIndex++;
@@ -426,36 +487,31 @@ void Entity::Update(float deltaTime, Entity* objects, int objectCount, Map* map)
 			}
 		}
 	}
-	
+
 	if (entityType == ENEMY) {
 
-		sensorRight = glm::vec3(position.x + 0.3f, position.y - 0.7f, 0);
-		sensorLeft = glm::vec3(position.x - 0.3f, position.y - 0.7f, 0);
-		CheckSensors(map);
 		AI(*objects);
 
-		if (lastCollision == PLAYER && (collidedLeft == true || collidedRight == true || collidedBottom == true)) {
+		if (lastCollision == PLAYER && (collidedLeft == true || collidedRight == true || collidedBottom == true || collidedTop)) {
 			if (objects->lives > 0) {
 				objects->lives -= 1;
-				objects->position.y = 2;
-                objects->position.x -= 1;
+				objects->position = glm::vec3(4, -2.5, 0);;
 				lastCollision = PLATFORM;
 			}
 		}
 	}
 	if (entityType == PLAYER) {
-		if (lastCollision == ENEMY && (collidedLeft == true || collidedRight == true)) {
-            if (lives > 0)  {
-                lives-=1;
-				position.y = 2;
-                position.x -= 1;
+		if (lastCollision == ENEMY && (collidedLeft == true || collidedRight == true || collidedBottom == true || collidedTop)) {
+			if (lives > 0) {
+				lives -= 1;
+				position = glm::vec3(4, -2.5, 0);
 				lastCollision = PLATFORM;
-            }
+			}
 		}
 		if (lives == 0) {
 			velocity = glm::vec3(0, 0, 0);
 			acceleration = glm::vec3(0, 0, 0);
-            position.y = 100.0;
+			position.y = 100.0;
 		}
 	}
 }
@@ -472,9 +528,9 @@ void Entity::Render(ShaderProgram* program) {
 	program->SetModelMatrix(modelMatrix);
 
 	DrawSpriteFromTextureAtlas(program, animIndices.at(animIndex));
-    if (entityType == PLAYER) {
-        for (int i = 0; i < lives; i++) {
-            DrawLives(program, i);
-        }
-    }
+	if (entityType == PLAYER) {
+		for (int i = 0; i < lives; i++) {
+			DrawLives(program, i);
+		}
+	}
 }

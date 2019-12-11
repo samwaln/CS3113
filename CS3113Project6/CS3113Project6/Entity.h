@@ -15,17 +15,20 @@
 #include "Util.h"
 
 enum  EntityType { PLATFORM, PLAYER, COIN, ENEMY, CHEST };
-enum AIState { IDLE, WALKING, PATROLING };
-enum AIType { WALKER, PATROL };
+enum AIState { IDLE, WALKING, PATROLING, RETURNING, LUNGEDOWN, START, CIRCLE };
+enum AIType { HORIZONTAL, VERTICAL, JABBER, CIRCLER, CHARGER };
+
 
 class Entity {
 public:
-    
+
 	EntityType entityType;
 	bool isStatic;
 	bool isActive;
-    int lives;
+	int lives;
 	glm::vec3 enemyVel;
+    bool won;
+    bool soundPlayed;
 
 	glm::vec3 position;
 	glm::vec3 velocity;
@@ -46,15 +49,17 @@ public:
 
 	void AI(Entity player); //basically Ai update
 
-	void AIWalker(Entity player);
-	void AIPatrol(Entity player);
+	void AIHorizontal(Entity player);
+	void AIVertical(Entity player);
+	void AIJab(Entity player);
+	void AICircle(Entity player);
 
 	float width;
 	float height;
 
 	float speed;
 	void DrawSpriteFromTextureAtlas(ShaderProgram* program, int index);
-    void DrawLives(ShaderProgram* program, int lifeNumber);
+	void DrawLives(ShaderProgram* program, int lifeNumber);
 	GLuint textureID;
 
 	Entity();
