@@ -15,6 +15,7 @@
 		A9BE3EC3239EB2E40021E17D /* win.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9BE3EC2239EB2D70021E17D /* win.wav */; };
 		A9BE3EC5239EB3D40021E17D /* life.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9BE3EC4239EB3C30021E17D /* life.wav */; };
 		A9BE3EC7239EB4350021E17D /* backgroundmusic.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9BE3EC6239EB42F0021E17D /* backgroundmusic.wav */; };
+		A9BE3EC9239ECB620021E17D /* backtrack1.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9BE3EC8239ECB280021E17D /* backtrack1.wav */; };
 		A9E5F2332369D7D200B1AED2 /* Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9E5F2312369D7D200B1AED2 /* Util.cpp */; };
 		A9E5F2352369D9DD00B1AED2 /* font.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9E5F2342369D9CE00B1AED2 /* font.png */; };
 		A9E5F2382369E11A00B1AED2 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9E5F2362369E11A00B1AED2 /* Scene.cpp */; };
@@ -39,6 +40,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
+				A9BE3EC9239ECB620021E17D /* backtrack1.wav in CopyFiles */,
 				A9BE3EC7239EB4350021E17D /* backgroundmusic.wav in CopyFiles */,
 				A9BE3EC5239EB3D40021E17D /* life.wav in CopyFiles */,
 				A9BE3EC3239EB2E40021E17D /* win.wav in CopyFiles */,
@@ -63,6 +65,7 @@
 		A9BE3EC2239EB2D70021E17D /* win.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = win.wav; sourceTree = "<group>"; };
 		A9BE3EC4239EB3C30021E17D /* life.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = life.wav; sourceTree = "<group>"; };
 		A9BE3EC6239EB42F0021E17D /* backgroundmusic.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = backgroundmusic.wav; path = ../../../../Downloads/backgroundmusic.wav; sourceTree = "<group>"; };
+		A9BE3EC8239ECB280021E17D /* backtrack1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = backtrack1.wav; sourceTree = "<group>"; };
 		A9E5F2312369D7D200B1AED2 /* Util.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Util.cpp; sourceTree = "<group>"; };
 		A9E5F2322369D7D200B1AED2 /* Util.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
 		A9E5F2342369D9CE00B1AED2 /* font.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = font.png; sourceTree = "<group>"; };
@@ -127,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				A9BE3EC6239EB42F0021E17D /* backgroundmusic.wav */,
+				A9BE3EC8239ECB280021E17D /* backtrack1.wav */,
 				A9BE3EC2239EB2D70021E17D /* win.wav */,
 				A9BE3EC4239EB3C30021E17D /* life.wav */,
 				A9BE3EC0239D86140021E17D /* chest.png */,

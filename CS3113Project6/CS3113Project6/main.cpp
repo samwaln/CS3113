@@ -58,11 +58,12 @@ void Initialize() {
     program.Load("shaders/vertex_textured.glsl", "shaders/fragment_textured.glsl");
     
     Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 4096);
-    music = Mix_LoadMUS("backgroundmusic.wav");
+    music = Mix_LoadMUS("backtrack1.wav");
+    Mix_VolumeMusic(MIX_MAX_VOLUME);
     life = Mix_LoadWAV("life.wav");
-    Mix_VolumeChunk(life, MIX_MAX_VOLUME * 4);
+    Mix_VolumeChunk(life, MIX_MAX_VOLUME/2);
     won = Mix_LoadWAV("win.wav");
-    Mix_VolumeChunk(won, MIX_MAX_VOLUME * 4);
+    Mix_VolumeChunk(won, MIX_MAX_VOLUME/2);
     Mix_PlayMusic(music, -1);
     
     fontTextureID = Util::LoadTexture("font.png");
